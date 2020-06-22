@@ -8,7 +8,7 @@
     "startwindows": "set \"NODE_ENV=production\" && node server/server.js",
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
     "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
-    "start": "node server/server.js",
+    "start": "NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack ",
     "dev": "nodemon server/server.js & cross-env NODE_ENV=development webpack-dev-server --open"
   },
