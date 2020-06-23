@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Session from '../Session.js';
+import { device } from '../components/style/device';
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -16,6 +17,9 @@ const LogoWrapper = styled.div`
   background-color: red;
   color: white;
   padding: 5vh 5vh;
+  @media: ${device.tablet} {
+    justify-content: start;
+  }
 `;
 
 const Logo = styled.span`
