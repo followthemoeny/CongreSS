@@ -20,7 +20,7 @@ const Elections = (props) => {
 
   if (!elections.length) {
     return (
-      <h1>No upcoming elections near {Session.getAddress()}</h1>
+      <h1>No upcoming elections near {Session.address}</h1>
     );
   }
 
@@ -36,7 +36,7 @@ const Elections = (props) => {
 
   return (
     <div>
-      <h1>Elections around {Session.getAddress()}:</h1>
+      <h1>Elections around {Session.address}:</h1>
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 import Session from '../Session.js';
 import { device } from '../components/style/device';
 
@@ -68,13 +68,13 @@ const Portal = (props) => {
     const address = ev.target.elements.address.value;
 
     setSearching(true);
-    Session.createSession(address)
+    Session.initialize(address)
       .then((data) => {
         setSearching(false);
         props.history.push('/officials');
       })
       .catch((err) => {
-        setSearching("Sorry, that address doesn't seem to be valid");
+        setSearching("Sorry, that address doesn't seem to be valid.")
       });
   };
 

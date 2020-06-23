@@ -22,7 +22,7 @@ const ElectionLink = (props) => {
   };
 
   return (
-    <Link to={linkTo}>Upcoming Elections near {Session.getAddress()}</Link>
+    <Link to={linkTo}>Upcoming Elections near {Session.address}</Link>
   );
 };
 
@@ -72,7 +72,7 @@ const Officials = (props) => {
     <div>
       <Switch>
         <Route exact path={path}>
-          <ElectionLink address={Session.getAddress()} />
+          <ElectionLink address={Session.address} />
           <Grid officials={props.location.state} />
         </Route>
         <Route path={`${path}/:officialName`}>

@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from 'react-router-dom';
 import ProtectedRoute from './util/ProtectedRoute.jsx';
 
@@ -20,7 +19,7 @@ const Background = styled.div`
 `;
 const App = () => {
   const validate = () => {
-    if (!Session.getAddress()) {
+    if (!Session.address) {
       return '/';
     }
   };
