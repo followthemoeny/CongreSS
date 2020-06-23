@@ -32,7 +32,7 @@ describe('Route Integration', () => {
         return request(server)
           .get('/api/officials/144 2nd ave 10003')
           .expect((res) => {
-            expect(Array.isArray(res.body).toEqual(true));
+            expect(Array.isArray(res.body)).toEqual(true);
             res.body.forEach((official) => {
               expect(official.hasOwnProperty('address')).toEqual(true);
               expect(official.hasOwnProperty('name')).toEqual(true);

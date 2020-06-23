@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 const { google, proPublica, fec } = require('../../secret');
-const { resource } = require('../server');
+const { resource } = require('../index');
 
 const apiController = {};
 
