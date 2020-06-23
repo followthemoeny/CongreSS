@@ -1,35 +1,71 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Switch, Route, Link, useRouteMatch, useParams, withRouter } from "react-router-dom";
+import Api from '../util/Api.js';
+import { SessionContext } from '../contexts/Session.js';
+import Official from '../components/Official.jsx';
 
-import { Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
+const ElectionLink = ({address}) => {
+  const [ elections, setElections ] = useState(null);
 
-import { SessionContext } from '../contexts/Session.jsx';
+  useEffect(() => {
+    Api.getElections(address)
+    .then((data) => setElections(data))
+    .catch((err) => setElections(undefined));
+  }, []);
 
-const Profile = () => {
-  let { officialName } = useParams();
+  if (!elections) {
+    return null;
+  }
+
+  const linkTo = { 
+    pathname: '/elections', 
+    state: elections
+  };
 
   return (
-    <h3>You selected {officialName}.</h3>
+    <Link to={linkTo}>Upcoming Elections near {address}</Link>
   );
 };
 
-const Officials = () => {
-  const { path, url } = useRouteMatch();
+const Grid = ({officials}) => {
+  officials = officials.map((props, i) => 
+    <Official key={`official${i}`} {...props} />
+  );
+
+  return (
+    <div>
+      <h2>Your Elected Officials</h2>
+      {officials}
+    </div>
+  );
+};
+
+const Profile = (props) => {
+  let { officialName } = useParams();
+
+  return (
+    <h3>You selected {props.name}.</h3>
+  );
+};
+
+const Officials = (props) => {
+  const { path } = useRouteMatch();
+
   const { session } = useContext(SessionContext);
 
   return (
     <div>
       <Switch>
         <Route exact path={path}>
-          <Link to={'/elections'}>Upcoming Elections</Link>
-          <h2>Your Elected Officials ({session.address})</h2>
-          <Link to={`${url}/MitchMcConnel`}>Mitch McConnel</Link>
+          <ElectionLink address={session.address} />
+          <Grid officials={props.location.state} />
         </Route>
         <Route path={`${path}/:officialName`}>
-          <Profile />
+          <Profile {...props.location.state}/>
         </Route>
       </Switch>
     </div>
   );
 };
 
-export default Officials;
+export default withRouter(Officials);

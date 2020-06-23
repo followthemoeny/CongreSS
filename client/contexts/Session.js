@@ -4,6 +4,8 @@ const initialState = {
   address: null
 };
 
+const localState = JSON.parse(localStorage.getItem("session"));
+
 const reducer = (session, newSession) => {
   if (newSession === null) {
     localStorage.removeItem("session");
@@ -12,11 +14,9 @@ const reducer = (session, newSession) => {
   return { ...session, ...newSession };
 };
 
-const localState = JSON.parse(localStorage.getItem("session"));
+export const SessionContext = React.createContext();
 
-const SessionContext = React.createContext();
-
-function SessionProvider(props) {
+export const SessionProvider = (props) => {
   const [session, setSession] = useReducer(reducer, localState || initialState);
 
   useEffect(() => {
@@ -28,6 +28,4 @@ function SessionProvider(props) {
       {props.children}
     </SessionContext.Provider>
   );
-}
-
-export { SessionContext, SessionProvider };
+};

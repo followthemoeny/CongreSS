@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './util/ProtectedRoute.jsx';
 
-import { SessionContext } from './contexts/Session.jsx';
+import { SessionContext } from './contexts/Session.js';
 
 import Portal from './routes/Portal.jsx';
 import Officials from './routes/Officials.jsx';

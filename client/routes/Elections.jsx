@@ -1,14 +1,22 @@
 import React, { useContext } from 'react';
+import { withRouter } from "react-router-dom";
+import { SessionContext } from '../contexts/Session.js';
+import Election from '../components/Election.jsx';
 
-import { SessionContext } from '../contexts/Session.jsx';
-
-const Elections = () => {
+const Elections = (props) => {
   const { session } = useContext(SessionContext);
 
+  const elections = props.location.state.map((props) =>
+    <Election {...props}/>
+  );
+
   return (
-    <h1>No upcoming elections around {session.address}.</h1>
+    <div>
+      <h1>Elections around {session.address}:</h1>
+      {elections}
+    </div>
   );
 };
 
 
-export default Elections;
+export default withRouter(Elections);

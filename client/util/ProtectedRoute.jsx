@@ -5,13 +5,13 @@ const ProtectedRoute = ({ validate, children, ...rest }) => {
   const render = ({ location }) => {
     const redirect = validate(location);
     if (redirect) {
-      const to = { 
+      const linkTo = { 
         pathname: redirect, 
         state: { 
           from: location 
         }
       };
-      return <Redirect to={to} />;
+      return <Redirect to={linkTo} />;
     }
     return children;
   }
