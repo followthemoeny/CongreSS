@@ -3,10 +3,7 @@ import { render } from 'react-dom';
 import App from './App.jsx';
 
 if (module && module.hot) {
-  module.hot.accept()
+  module.hot.accept();
 }
 
-render(
-<App/>,
-document.getElementById('root')
-);
+render(<App />, document.getElementById('root'));
