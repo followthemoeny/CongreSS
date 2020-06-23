@@ -6,6 +6,7 @@ import {
   useRouteMatch,
   withRouter,
 } from 'react-router-dom';
+import styled from 'styled-components';
 import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
@@ -32,6 +33,18 @@ const ElectionLink = (props) => {
 };
 
 const Grid = (props) => {
+  const OfficialsHeader = styled.h2`
+    color: #0052a5;
+    font-size: 2em;
+    margin-bottom: 0px;
+  `;
+  const OfficialsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  `;
+
   const [officials, setOfficials] = useState(null);
 
   useEffect(() => {
@@ -48,15 +61,15 @@ const Grid = (props) => {
     return <h1>An error occurred.</h1>;
   }
 
-  const children = officials.map((props, i) => (
-    <Official key={`official${i}`} {...props} />
-  ));
+  const children = officials
+    .map((props, i) => <Official key={`official${i}`} {...props} />)
+    .reverse();
 
   return (
-    <div>
-      <h2>Your Elected Officials</h2>
+    <OfficialsWrapper>
+      <OfficialsHeader>Your Elected Officials</OfficialsHeader>
       {children}
-    </div>
+    </OfficialsWrapper>
   );
 };
 
