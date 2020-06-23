@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { device } from '../components/style/device';
 
 const CardWrapper = styled.div`
   display: flex;
