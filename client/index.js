@@ -7,6 +7,6 @@ if (module && module.hot) {
 }
 
 render(
-<App/>,
-document.getElementById('root')
+  <App/>,
+  document.getElementById('root')
 );
