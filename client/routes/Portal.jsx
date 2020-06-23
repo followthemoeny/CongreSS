@@ -7,7 +7,7 @@ import { device } from '../components/style/device';
 const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
-  background-color: red;
+  background-color: #e0162b;
   color: white;
   padding: 5vh 5vh;
   @media ${device.tablet} {
