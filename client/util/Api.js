@@ -1,5 +1,14 @@
-const Api = {
-  getOfficals(address) {
+class Api {
+  static data = {
+    address: null,
+    officials: null,
+    elections: null
+  };
+
+  static startSession(address) {
+
+  }
+  static getOfficals(address) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (address === 'bad') {
@@ -16,8 +25,9 @@ const Api = {
         ]);
       }, 200);
     });
-  },
-  getElections(address) {
+  }
+
+  static getElections(address) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (address === 'noelections') {
@@ -32,8 +42,9 @@ const Api = {
         ]);
       }, 200);
     });
-  },
-  getCandidates(address) {
+  }
+
+  static getCandidates(address) {
     if (address === 'bad') {
       return [];
     }
