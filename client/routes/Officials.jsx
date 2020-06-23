@@ -69,6 +69,7 @@ const Officials = (props) => {
 
   return (
     <div>
+      <Logo />
       <Switch>
         <Route exact path={path}>
           <ElectionLink address={Session.address} />
