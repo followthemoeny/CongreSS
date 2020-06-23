@@ -1,14 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Switch, Route, Link, useRouteMatch, useParams, withRouter } from "react-router-dom";
-import Api from '../util/Api.js';
-import { SessionContext } from '../contexts/Session.js';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link, useRouteMatch, withRouter } from "react-router-dom";
+import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 
-const ElectionLink = ({address}) => {
+const ElectionLink = (props) => {
   const [ elections, setElections ] = useState(null);
 
   useEffect(() => {
-    Api.getElections(address)
+    Session.getElections()
     .then((data) => setElections(data))
     .catch((err) => setElections(undefined));
   }, []);
@@ -23,26 +22,44 @@ const ElectionLink = ({address}) => {
   };
 
   return (
-    <Link to={linkTo}>Upcoming Elections near {address}</Link>
+    <Link to={linkTo}>Upcoming Elections near {Session.getAddress()}</Link>
   );
 };
 
-const Grid = ({officials}) => {
-  officials = officials.map((props, i) => 
+const Grid = (props) => {
+  const [ officials, setOfficials ] = useState(null);
+
+  useEffect(() => {
+    Session.getOfficals()
+    .then((data) => setOfficials(data))
+    .catch((err) => setOfficials(undefined));
+  }, []);
+
+  if (officials === null) {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
+
+  if (!officials || !officials.length) {
+    return (
+      <h1>An error occurred.</h1>
+    )
+  }
+
+  const children = officials.map((props, i) => 
     <Official key={`official${i}`} {...props} />
   );
 
   return (
     <div>
       <h2>Your Elected Officials</h2>
-      {officials}
+      {children}
     </div>
   );
 };
 
 const Profile = (props) => {
-  let { officialName } = useParams();
-
   return (
     <h3>You selected {props.name}.</h3>
   );
@@ -51,13 +68,11 @@ const Profile = (props) => {
 const Officials = (props) => {
   const { path } = useRouteMatch();
 
-  const { session } = useContext(SessionContext);
-
   return (
     <div>
       <Switch>
         <Route exact path={path}>
-          <ElectionLink address={session.address} />
+          <ElectionLink address={Session.getAddress()} />
           <Grid officials={props.location.state} />
         </Route>
         <Route path={`${path}/:officialName`}>

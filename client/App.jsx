@@ -3,17 +3,15 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './util/ProtectedRoute.jsx';
 
-import { SessionContext } from './contexts/Session.js';
+import Session from './Session.js';
 
 import Portal from './routes/Portal.jsx';
 import Officials from './routes/Officials.jsx';
 import Elections from './routes/Elections.jsx';
 
 const App = () => {
-  const { session } = useContext(SessionContext);
-
   const validate = () => {
-    if (!session.address) {
+    if (!Session.getAddress()) {
       return '/';
     }
   };

@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from "react-router-dom";
-import { SessionContext } from '../contexts/Session.js';
-import Api from '../util/Api.js';
+import Session from '../Session.js';
 
 const Portal = (props) => {
-  const { setSession } = useContext(SessionContext);
   const [ searching, setSearching ] = useState(null);
 
   const search = (ev) => {
@@ -13,14 +11,14 @@ const Portal = (props) => {
     const address = ev.target.elements.address.value;
 
     setSearching(true);
-
-    Api.getOfficals(address)
+    Session.createSession(address)
       .then((data) => {
-        setSession({ address: address });
-        props.history.push('/officials', data);
         setSearching(false);
+        props.history.push('/officials');
       })
-      .catch((err) => setSearching("Sorry, that address doesn't seem to be valid"));
+      .catch((err) => {
+        setSearching("Sorry, that address doesn't seem to be valid")
+      });
   };
 
   return (
