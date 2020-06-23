@@ -10,8 +10,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieparser());
 
-console.log(process.env.NODE_ENV);
-
 if (process.env.NODE_ENV !== 'development') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'

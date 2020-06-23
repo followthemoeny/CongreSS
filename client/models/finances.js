@@ -1,4 +1,4 @@
-const candidate = {
+const finances = {
   flags: 'S8NY00082',
   last_file_date: '2017-01-13',
   first_file_date: '1997-08-26',
@@ -30,4 +30,4 @@ const candidate = {
   district: '00',
 }; 
 
-export default candidate;
+export default finances;
