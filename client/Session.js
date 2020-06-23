@@ -1,5 +1,6 @@
 import ex_officials from './models/officials.js';
 import ex_elections from './models/election.js';
+import ex_finances from './models/finances.js';
 
 const value = (key, val = undefined) => {
   if (key === null) {
@@ -95,9 +96,7 @@ const Session = {
           return reject(404);
         }
 
-        finances[candidate_id] = {
-          expenditures: 123456789.00
-        };
+        finances[candidate_id] = ex_finances;
 
         value(Session.FINANCES, finances);
         
