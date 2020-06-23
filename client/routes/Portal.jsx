@@ -1,27 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import styled from 'styled-components'; 
-import Session from '../Session.js';
+import styled from 'styled-components';
 import { device } from '../components/style/device';
-
-const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: #e0162b;
-  color: white;
-  padding: 5vh 5vh;
-  @media ${device.tablet} {
-    justify-content: start;
-  }
-`;
-
-const Logo = styled.span`
-  font-family: 'Rubik', sans-serif;
-  font-size: 2.5em;
-  @media ${device.tablet} {
-    font-size: 2.5em;
-  }
-`;
+import Logo from '../components/Logo.jsx';
+import Session from '../Session.js';
 
 const StyledForm = styled.form`
   display: flex;
@@ -38,6 +20,10 @@ const SearchInput = styled.input`
   border-radius: 10px;
   border: none;
   margin-top: 3vh;
+  &:focus {
+    border: 1px solid #0052a5;
+    padding: 10px 10px 8px 26px;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -74,19 +60,14 @@ const Portal = (props) => {
         props.history.push('/officials');
       })
       .catch((err) => {
-        setSearching("Sorry, that address doesn't seem to be valid.")
+        setSearching("Sorry, that address doesn't seem to be valid.");
       });
   };
 
   return (
     <div>
-      <LogoWrapper>
-        <Logo>Congre$$</Logo>
-      </LogoWrapper>
+      <Logo />
       <StyledForm onSubmit={search}>
-        {/* <Explanation>
-          Enter your address to search for representatives
-        </Explanation> */}
         <div>{typeof searching === 'string' ? searching : null}</div>
         <SearchInput
           name="address"
