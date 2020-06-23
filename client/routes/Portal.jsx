@@ -1,27 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import Session from '../Session.js';
 import { device } from '../components/style/device';
-
-const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: #e0162b;
-  color: white;
-  padding: 5vh 5vh;
-  @media ${device.tablet} {
-    justify-content: start;
-  }
-`;
-
-const Logo = styled.span`
-  font-family: 'Rubik', sans-serif;
-  font-size: 2.5em;
-  @media ${device.tablet} {
-    font-size: 2.5em;
-  }
-`;
+import Logo from '../components/Logo.jsx';
+import Session from '../Session.js';
 
 const StyledForm = styled.form`
   display: flex;
@@ -84,9 +66,7 @@ const Portal = (props) => {
 
   return (
     <div>
-      <LogoWrapper>
-        <Logo>Congre$$</Logo>
-      </LogoWrapper>
+      <Logo />
       <StyledForm onSubmit={search}>
         <div>{typeof searching === 'string' ? searching : null}</div>
         <SearchInput
