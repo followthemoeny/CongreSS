@@ -8,7 +8,11 @@
     "startwindows": "set \"NODE_ENV=production\" && node server/server.js",
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
     "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
+<<<<<<< HEAD
     "start": "cross-env NODE_ENV=production node server/server.js",
+=======
+    "start": "NODE_ENV=production node server/server.js",
+>>>>>>> fa83a631f7f5c32aa5d2e7ea9433f2a7d87c6775
     "build": "cross-env NODE_ENV=production webpack ",
     "dev": "nodemon server/server.js & cross-env NODE_ENV=development webpack-dev-server --open"
   },
