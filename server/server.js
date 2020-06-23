@@ -13,7 +13,7 @@ app.use(cookieparser());
 
 app.use('/api', apiRouter);
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'development') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
   app.use('/', (req, res) => {
