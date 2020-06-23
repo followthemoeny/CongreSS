@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './util/ProtectedRoute.jsx';
 
 import { SessionContext } from './contexts/Session.jsx';
@@ -14,22 +14,25 @@ const App = () => {
 
   const validate = () => {
     if (!session.address) {
-      return "/";
+      return '/';
     }
   };
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <Portal />
         </Route>
-        <ProtectedRoute path="/officials" validate={validate}>
+        <ProtectedRoute path='/officials' validate={validate}>
           <Officials />
         </ProtectedRoute>
-        <ProtectedRoute path="/elections" validate={validate}>
+        <ProtectedRoute path='/elections' validate={validate}>
           <Elections />
         </ProtectedRoute>
+        <Route>
+          <h1>404 Not Found</h1>
+        </Route>
       </Switch>
     </Router>
   );
