@@ -15,7 +15,7 @@ const store = (key, val = undefined) => {
   return data[key];
 };
 
-const Api = {
+const Session = {
   ADDRESS: "address",
   OFFICIALS: "officials",
   ELECTIONS: "elections",
@@ -23,31 +23,31 @@ const Api = {
 
   createSession(address) {
     store({
-      [Api.ADDRESS]: address,
-      [Api.OFFICIALS]: null,
-      [Api.ELECTIONS]: null,
-      [Api.CANDIDATES]: null
+      [Session.ADDRESS]: address,
+      [Session.OFFICIALS]: null,
+      [Session.ELECTIONS]: null,
+      [Session.CANDIDATES]: null
     });
 
-    return Api.getOfficals(address)
+    return Session.getOfficals(address)
       .then((result) => {
-        store(Api.OFFICIALS, result);
+        store(Session.OFFICIALS, result);
       })
       .catch((err) => {
-        store(Api.ADDRESS, null);
+        store(Session.ADDRESS, null);
         return Promise.reject();
       });
   },
 
   get address() {
-    return store(Api.ADDRESS);
+    return store(Session.ADDRESS);
   },
 
   getOfficals() {
-    const address = store(Api.ADDRESS);
+    const address = store(Session.ADDRESS);
 
     return new Promise((resolve, reject) => {
-      const officials = store(Api.OFFICIALS);
+      const officials = store(Session.OFFICIALS);
 
       if (officials) {
         return resolve(officials);
@@ -58,7 +58,7 @@ const Api = {
           return reject(404);
         }
         
-        resolve(store(Api.OFFICIALS, [
+        resolve(store(Session.OFFICIALS, [
           {
             name: 'Mitch McConnel'
           },
@@ -71,10 +71,10 @@ const Api = {
   },
 
   getElections() {
-    const address = store(Api.ADDRESS);
+    const address = store(Session.ADDRESS);
 
     return new Promise((resolve, reject) => {
-      const elections = store(Api.ELECTIONS);
+      const elections = store(Session.ELECTIONS);
 
       if (elections) {
         return resolve(elections);
@@ -85,7 +85,7 @@ const Api = {
           return reject(404);
         }
         
-        resolve(store(Api.ELECTIONS, [
+        resolve(store(Session.ELECTIONS, [
           {
             date: '06/23/2020',
             address: 'Some Address, New York, NY 10001'
@@ -96,10 +96,10 @@ const Api = {
   },
 
   getCandidates() {
-    const address = store(Api.ADDRESS);
+    const address = store(Session.ADDRESS);
 
     return new Promise((resolve, reject) => {
-      const candidates = store(Api.CANDIDATES);
+      const candidates = store(Session.CANDIDATES);
 
       if (candidates) {
         return resolve(candidates);
@@ -110,7 +110,7 @@ const Api = {
           return reject(404);
         }
         
-        resolve(store(Api.CANDIDATES, [
+        resolve(store(Session.CANDIDATES, [
           {
             id: 123,
             name: 'Joe Biden'
@@ -125,4 +125,4 @@ const Api = {
   }
 };
 
-export default Api;
+export default Session;
