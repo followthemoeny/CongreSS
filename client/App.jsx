@@ -11,7 +11,7 @@ import Elections from './routes/Elections.jsx';
 
 const App = () => {
   const validate = () => {
-    if (!Session.getAddress()) {
+    if (!Session.address) {
       return '/';
     }
   };

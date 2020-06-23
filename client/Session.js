@@ -39,7 +39,7 @@ const Api = {
       });
   },
 
-  getAddress() {
+  get address() {
     return store(Api.ADDRESS);
   },
 
