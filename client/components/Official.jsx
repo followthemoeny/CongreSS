@@ -12,6 +12,10 @@ const CardWrapper = styled.div`
   min-width: 80vw;
   border-radius: 4px;
   box-shadow: 2px 2px 5px -3px #000000;
+  @media ${device.laptop} {
+    max-width: 100px;
+    min-width: 30vw;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -22,7 +26,9 @@ const InfoWrapper = styled.div`
 
 const Picture = styled.img`
   max-width: 100px;
+  min-width: 75px;
   max-height: 100px;
+  min-height: 100px;
 `;
 
 const Official = (props) => {

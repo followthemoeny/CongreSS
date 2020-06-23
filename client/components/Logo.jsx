@@ -8,7 +8,7 @@ const LogoWrapper = styled.div`
   background-color: #e0162b;
   color: white;
   padding: 5vh 5vh;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     justify-content: start;
   }
 `;
@@ -16,7 +16,7 @@ const LogoWrapper = styled.div`
 const LogoContent = styled.span`
   font-family: 'Rubik', sans-serif;
   font-size: 2.5em;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     font-size: 2.5em;
   }
 `;

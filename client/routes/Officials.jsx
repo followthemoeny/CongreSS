@@ -7,6 +7,7 @@ import {
   withRouter,
 } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from '../components/style/device';
 import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
@@ -34,6 +35,8 @@ const ElectionLink = (props) => {
 
 const Grid = (props) => {
   const OfficialsHeader = styled.h2`
+    display: flex;
+    justify-content: center;
     color: #0052a5;
     font-size: 2em;
     margin-bottom: 0px;
@@ -43,6 +46,11 @@ const Grid = (props) => {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    @media ${device.laptop} {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   `;
 
   const [officials, setOfficials] = useState(null);
@@ -66,10 +74,10 @@ const Grid = (props) => {
     .reverse();
 
   return (
-    <OfficialsWrapper>
+    <div>
       <OfficialsHeader>Your Elected Officials</OfficialsHeader>
-      {children}
-    </OfficialsWrapper>
+      <OfficialsWrapper>{children}</OfficialsWrapper>
+    </div>
   );
 };
 
