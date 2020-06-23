@@ -3,19 +3,24 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Session from '../Session.js';
 
-const PortalWrapper = styled.div`
+const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30vh;
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   background-color: red;
+  color: white;
+  padding: 5vh 5vh;
 `;
 
 const Logo = styled.span`
   font-family: 'Rubik', sans-serif;
   font-size: 2em;
-  margin-top: 20px;
-  background-color: red;
-  color: white;
 `;
 
 const Portal = (props) => {
@@ -38,14 +43,18 @@ const Portal = (props) => {
   };
 
   return (
-    <PortalWrapper>
-      <Logo>Congre$$</Logo>
-      <form onSubmit={search}>
-        <div>{typeof searching === 'string' ? searching : null}</div>
-        <input name="address" type="text"></input>
-        <button type="submit">{searching === true ? '...' : 'search'}</button>
-      </form>
-    </PortalWrapper>
+    <div>
+      <LogoWrapper>
+        <Logo>Congre$$</Logo>
+      </LogoWrapper>
+      <SearchWrapper>
+        <form onSubmit={search}>
+          <div>{typeof searching === 'string' ? searching : null}</div>
+          <input name="address" type="text"></input>
+          <button type="submit">{searching === true ? '...' : 'search'}</button>
+        </form>
+      </SearchWrapper>
+    </div>
   );
 };
 
