@@ -69,17 +69,17 @@ const Session = {
       const elections = value(Session.ELECTIONS);
 
       if (elections) {
-        return resolve(elections);
+        return resolve(elections); 
       }
 
       setTimeout(() => {
         if (Session.address === 'noelections') {
-          return reject(404);
+          return reject(404); 
         }
         
         resolve(value(Session.ELECTIONS, ex_elections));
       }, 200);
-    });
+    }); 
   },
 
   getFinances(candidate_id) {

@@ -41,7 +41,6 @@ const Candidate = (props) => {
     <div style={{border: '1px solid'}}>
       <div><b>name:</b> {props.name}</div>
       <div><b>party:</b> {props.party}</div>
-      <div><b>address:</b> {props.address_street_1}</div>
       <div>
         <button onClick={() => setShowFinances(!showFinances)}>
           {showFinances ? 'hide' : 'show'} finances
