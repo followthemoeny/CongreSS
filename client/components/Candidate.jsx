@@ -27,7 +27,9 @@ const FinanceData = (props) => {
 
   return (
     <div style={{border: '1px solid'}}>
-      <div><b>total expenditures:</b> {data.expenditures}</div>
+      <div><b>individual contributions:</b> {data.results[0].individual_contributions}</div>
+      <div><b>politcal committee contributions:</b> {data.results[0].other_political_committee_contributions}</div>
+      <div><b>operating expenditures:</b> {data.results[0].operating_expenditures}</div>
     </div>
   );
 };
