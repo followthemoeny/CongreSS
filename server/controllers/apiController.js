@@ -35,7 +35,7 @@ apiController.getRepresentatives = (req, res, next) => {
         });
       });
       res.locals.representatives = reps;
-      next();
+      next(); 
     })
     .catch((error) => next(error));
 };
