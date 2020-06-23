@@ -13,7 +13,11 @@ app.use(cookieparser());
 
 app.use('/api', apiRouter);
 
+<<<<<<< HEAD:server/index.js
 if (process.env.NODE_ENV !== 'development') {
+=======
+if (process.env.NODE_ENV === 'production') {
+>>>>>>> f9092fe8e522a79ddafac9b837610c36975ea094:server/server.js
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
   app.use('/', (req, res) => {
@@ -34,4 +38,8 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log('listening on port 3000'));
+<<<<<<< HEAD:server/index.js
+=======
+
+>>>>>>> f9092fe8e522a79ddafac9b837610c36975ea094:server/server.js
 module.exports = app;

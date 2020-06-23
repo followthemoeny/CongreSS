@@ -9,10 +9,6 @@ import Portal from './routes/Portal.jsx';
 import Officials from './routes/Officials.jsx';
 import Elections from './routes/Elections.jsx';
 
-const Background = styled.div`
-  height: 100vh;
-  background-color: #add8e6;
-`;
 const App = () => {
   const validate = () => {
     if (!Session.address) {
@@ -21,24 +17,22 @@ const App = () => {
   };
 
   return (
-    <Background>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Portal />
-          </Route>
-          <ProtectedRoute path="/officials" validate={validate}>
-            <Officials />
-          </ProtectedRoute>
-          <ProtectedRoute path="/elections" validate={validate}>
-            <Elections />
-          </ProtectedRoute>
-          <Route>
-            <h1>404 Not Found</h1>
-          </Route>
-        </Switch>
-      </Router>
-    </Background>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Portal />
+        </Route>
+        <ProtectedRoute path="/officials" validate={validate}>
+          <Officials />
+        </ProtectedRoute>
+        <ProtectedRoute path="/elections" validate={validate}>
+          <Elections />
+        </ProtectedRoute>
+        <Route>
+          <h1>404 Not Found</h1>
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
