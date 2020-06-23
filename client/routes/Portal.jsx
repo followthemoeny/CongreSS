@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import Session from '../Session.js';
 
@@ -11,13 +11,13 @@ const Portal = (props) => {
     const address = ev.target.elements.address.value;
 
     setSearching(true);
-    Session.createSession(address)
+    Session.initialize(address)
       .then((data) => {
         setSearching(false);
         props.history.push('/officials');
       })
       .catch((err) => {
-        setSearching("Sorry, that address doesn't seem to be valid")
+        setSearching("Sorry, that address doesn't seem to be valid.")
       });
   };
 
