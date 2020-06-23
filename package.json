@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
-    "startwindows": "set \"NODE_ENV=production\" && node server/server.js",
+    "startwindows": "set \"NODE_ENV=production\" && node server/index.js",
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
-    "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
-    "start": "NODE_ENV=production node server/server.js",
+    "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/index.js\"",
+    "start": "NODE_ENV=production node server/index.js",
     "build": "cross-env NODE_ENV=production webpack ",
-    "dev": "nodemon server/server.js & cross-env NODE_ENV=development webpack-dev-server --open"
+    "dev": "nodemon server/index.js & cross-env NODE_ENV=development webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
