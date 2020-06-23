@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
+app.use('/api', apiRouter);
+
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
@@ -18,7 +20,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../index.html'));
   });
 }
-app.get('/api', apiRouter);
 
 // Error Handler
 app.use((err, req, res, next) => {
