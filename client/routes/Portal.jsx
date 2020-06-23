@@ -1,12 +1,28 @@
 import React, { useContext, useState } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import Session from '../Session.js';
 
+const PortalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: red;
+`;
+
+const Logo = styled.span`
+  font-family: 'Rubik', sans-serif;
+  font-size: 2em;
+  margin-top: 20px;
+  background-color: red;
+  color: white;
+`;
+
 const Portal = (props) => {
-  const [ searching, setSearching ] = useState(null);
+  const [searching, setSearching] = useState(null);
 
   const search = (ev) => {
-    ev.preventDefault()
+    ev.preventDefault();
 
     const address = ev.target.elements.address.value;
 
@@ -17,18 +33,20 @@ const Portal = (props) => {
         props.history.push('/officials');
       })
       .catch((err) => {
-        setSearching("Sorry, that address doesn't seem to be valid")
+        setSearching("Sorry, that address doesn't seem to be valid");
       });
   };
 
   return (
-    <form onSubmit={search}>
-      <div>{typeof searching === 'string' ? searching : null}</div>
-      <input name="address" type="text"></input>
-      <button type="submit">{searching === true ? '...' : 'search'}</button>
-    </form>
+    <PortalWrapper>
+      <Logo>Congre$$</Logo>
+      <form onSubmit={search}>
+        <div>{typeof searching === 'string' ? searching : null}</div>
+        <input name="address" type="text"></input>
+        <button type="submit">{searching === true ? '...' : 'search'}</button>
+      </form>
+    </PortalWrapper>
   );
 };
-
 
 export default withRouter(Portal);
