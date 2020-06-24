@@ -1,22 +1,32 @@
-import ex_officials from './models/officials.js';
-import ex_elections from './models/election.js';
-import ex_finances from './models/finances.js';
+import * as fetch from 'node-fetch';
+import * as querystring from 'querystring';
 
 const value = (key, val = undefined) => {
+  let result;
+
   if (key === null) {
     window.sessionStorage.removeItem("data");
+    return;
   }
-  let data = window.sessionStorage.getItem('data');
-  data = data ? JSON.parse(data) : {};
+
+  let data = JSON.parse(window.sessionStorage.getItem('data') || '{}');
+
+  if (typeof key === 'object') {
+    result = data = { ...data, ...key };
+  }
+
   if (val !== undefined) {
     data[key] = val;
-    window.sessionStorage.setItem('data', JSON.stringify(data));
-  } else if (typeof key === 'object') {
-    data = { ...data, ...key };
-    window.sessionStorage.setItem('data', JSON.stringify(data));
-    return data;
   }
-  return data[key];
+
+  window.sessionStorage.setItem('data', JSON.stringify(data));
+
+  return result || data[key];
+};
+
+const httpGet = (uri, query) => {
+  return fetch(`${uri}?${querystring.encode(query)}`)
+    .then((response) => response.status === 200 ? response.json() : Promise.reject())
 };
 
 const Session = {
@@ -38,10 +48,7 @@ const Session = {
     });
 
     return Session.getOfficals(address)
-      .then((result) => {
-        value(Session.OFFICIALS, result);
-      })
-      .catch((err) => {
+      .catch(() => {
         value(Session.ADDRESS, null);
         return Promise.reject();
       });
@@ -55,13 +62,8 @@ const Session = {
         return resolve(officials);
       }
 
-      setTimeout(() => {
-        if (Session.address === 'bad') {
-          return reject(404);
-        }
-        
-        resolve(value(Session.OFFICIALS, ex_officials.officials));
-      }, 200);
+      return httpGet('/api/officials', { address: Session.address })
+        .then((data) => resolve(value(Session.OFFICIALS, data)));
     });
   },
 
@@ -73,35 +75,29 @@ const Session = {
         return resolve(elections); 
       }
 
-      setTimeout(() => {
-        if (Session.address === 'noelections') {
-          return reject(404); 
-        }
-        
-        resolve(value(Session.ELECTIONS, ex_elections));
-      }, 200);
+      return httpGet('/api/election', { address: Session.address })
+        .then((data) => resolve(value(Session.ELECTIONS, Array.isArray(data) ? data : [data]))); //fix server
     }); 
   },
 
-  getFinances(candidate_id) {
+  getFinances(name, state) {
     return new Promise((resolve, reject) => {
       const finances = value(Session.FINANCES);
 
-      if (finances[candidate_id]) {
-        return resolve(finances[candidate_id]);
+      const key = `${name}:${state}`;
+
+      if (finances[key]) {
+        return resolve(finances[key]);
       }
 
-      setTimeout(() => {
-        if (Session.address === 'nofinances') {
-          return reject(404);
-        }
+      console.log(name, state);
 
-        finances[candidate_id] = ex_finances;
-
-        value(Session.FINANCES, finances);
-        
-        resolve(finances[candidate_id]);
-      }, 200);
+      return httpGet('/api/candidate', { name, state })
+        .then((data) => {
+          finances[key] = data;
+          value(Session.FINANCES, finances);
+          resolve(data);
+        });
     });
   }
 };

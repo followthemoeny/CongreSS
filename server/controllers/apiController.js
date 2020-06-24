@@ -14,6 +14,9 @@ apiController.getElectionInfo = (req, res, next) => {
       return response.json();
     })
     .then((data) => {
+      if(data.error){
+        return(next(data.error.message))
+      }
       const { election, pollingLocations, contests } = data;
       const electionObj = { ...election, pollingLocations };
       if (contests) electionObj.contests = contests;
@@ -35,6 +38,9 @@ apiController.getRepresentatives = (req, res, next) => {
       return response.json();
     })
     .then((data) => {
+      if(data.error){
+        return(next(data.error.message))
+      }
       const { offices, officials } = data;
       const reps = [];
       offices.forEach((elem) => {

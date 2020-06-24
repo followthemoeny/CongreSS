@@ -33,5 +33,6 @@ app.use((err, req, res, next) => {
   res.status(errorObj.status).send(JSON.stringify(errorObj.message));
 });
 
-app.listen(PORT, () => console.log('listening on port 3000'));
-module.exports = app;
+//app.listen(PORT, () => console.log('listening on port 3000'));
+//module.exports = app;
+module.exports = app.listen(PORT, () => console.log('listening on port 3000'));
