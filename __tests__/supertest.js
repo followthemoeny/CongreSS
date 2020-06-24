@@ -45,20 +45,12 @@ describe('Route Integration', () => {
     });
     describe('GET api/election', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-<<<<<<< HEAD
-        return request(server).get('/api/elections?address=thisaintanaddress').expect(400);
-=======
         return request(server).get('/api/election?address=thisaintanaddress').expect(400);
->>>>>>> 6da9973db8fae4261afec94cf3533263341f58f4
       });
 
       it('responds with a 200 status and a json object', () => {
         return request(server)
-<<<<<<< HEAD
-          .get('/api/elections?address=144 2nd ave 10003')
-=======
           .get('/api/election?address=144 2nd ave 10003')
->>>>>>> 6da9973db8fae4261afec94cf3533263341f58f4
           .expect('Content-Type', /application\/json/)
           .expect(200);
       });
