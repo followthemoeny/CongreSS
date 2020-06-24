@@ -31,14 +31,14 @@ apiController.getRepresentatives = (req, res, next) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.error) return next(data.error.message);
-      const { offices, officials } = data;
+      const { offices, officials, normalizedInput } = data;
       const reps = [];
       offices.forEach((elem) => {
         elem.officialIndices.forEach((index) => {
           reps.push({ ...officials[index], position: elem.name });
         });
       });
-      res.locals.representatives = reps;
+      res.locals.representatives = { normalizedInput, officials: reps };
       return next();
     })
     .catch((error) => next(error));
