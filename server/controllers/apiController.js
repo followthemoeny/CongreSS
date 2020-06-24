@@ -52,13 +52,19 @@ apiController.getCandidateInfo = async (req, res, next) => {
   const data = await candidateResp.json();
   if (data.error) return next(data.error.message);
   if (!data.results.length) return res.sendStatus(404);
-  const { candidate_id } = data.results[0];
+  const { candidate_id, principal_committees } = data.results[0];
+  const { committee_id } = principal_committees[0];
   const financeResp = await fetch(`https://api.open.fec.gov/v1/candidate/${candidate_id}/totals/?sort=-cycle&api_key=${fec}&sort_nulls_last=false&page=1&election_full=true&sort_hide_null=false&sort_null_only=false&per_page=20
   `);
+  const committeeResp = await fetch(`https://api.open.fec.gov/v1/committee/${committee_id}/totals/?sort=-cycle&api_key=${fec}&sort_nulls_last=false&page=1&sort_hide_null=false&sort_null_only=false&per_page=20
+  `);
   const financeData = await financeResp.json();
-
+  const committeeData = await committeeResp.json();
   if (financeData.error) return next(data.error.message);
   [res.locals.finance] = financeData.results;
+  if (!committeeData.error) {
+    res.locals.finance.committees = committeeData.results;
+  }
   return next();
 };
 
