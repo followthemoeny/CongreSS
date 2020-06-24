@@ -1,33 +1,6 @@
-import * as fetch from 'node-fetch';
-import * as querystring from 'querystring';
+import { clientStore, httpGet } from './util';
 
-const value = (key, val = undefined) => {
-  let result;
-
-  if (key === null) {
-    window.sessionStorage.removeItem("data");
-    return;
-  }
-
-  let data = JSON.parse(window.sessionStorage.getItem('data') || '{}');
-
-  if (typeof key === 'object') {
-    result = data = { ...data, ...key };
-  }
-
-  if (val !== undefined) {
-    data[key] = val;
-  }
-
-  window.sessionStorage.setItem('data', JSON.stringify(data));
-
-  return result || data[key];
-};
-
-const httpGet = (uri, query) => {
-  return fetch(`${uri}?${querystring.encode(query)}`)
-    .then((response) => response.status === 200 ? response.json() : Promise.reject())
-};
+const value = clientStore('data', true);
 
 const Session = {
   ADDRESS: "address",

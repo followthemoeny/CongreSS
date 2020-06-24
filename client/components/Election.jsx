@@ -1,16 +1,17 @@
 import React from 'react';
-
 import Contest from './Contest.jsx';
+import { access } from '../util';
 
 const Election = (props) => {
   console.log('election data', props);
 
+  const contests = props.contests || [];
   const election = props.election || props;
+  const address = access(election).pollingLocations[0].address({});
   const { electionDay } = election;
-  const address = election.pollingLocations ? election.pollingLocations[0].address : null;
 
-  const contests = props.contests 
-    ? props.contests.map((data, i) => <Contest {...data} key={`contest${i}`} state={address.state} />) 
+  const children = contests.length
+    ? contests.map((data, i) => <Contest {...data} key={`contest${i}`} state={address.state} />) 
     : <div>No available contest information.</div>;
 
   return (
@@ -23,7 +24,7 @@ const Election = (props) => {
       </div>
       <div>
         <b>contests:</b>
-        {contests}
+        {children}
       </div>
     </div>
   );
