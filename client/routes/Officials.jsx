@@ -40,12 +40,14 @@ const Grid = (props) => {
     color: #0052a5;
     font-size: 2em;
     margin-bottom: 0px;
+    font-family: -apple-system;
   `;
   const OfficialsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    font-family: -apple-system;
     @media ${device.laptop} {
       flex-direction: row;
       justify-content: center;
