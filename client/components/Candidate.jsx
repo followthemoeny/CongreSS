@@ -6,7 +6,7 @@ const FinanceData = (props) => {
   const [ data, setData ] = useState(null);
 
   useEffect(() => {
-    Session.getFinances(props.candidate_id)
+    Session.getFinances(props.name, props.state)
     .then((data) => setData(data))
     .catch((err) => setData(undefined));
   }, []);
@@ -25,11 +25,18 @@ const FinanceData = (props) => {
     )
   }
 
+  const results = data.results ? data.results[0] || {} : {};
+  const {
+    individual_contributions, 
+    other_political_committee_contributions, 
+    operating_expenditures
+  } = results;
+
   return (
     <div style={{border: '1px solid'}}>
-      <div><b>individual contributions:</b> {data.results[0].individual_contributions}</div>
-      <div><b>politcal committee contributions:</b> {data.results[0].other_political_committee_contributions}</div>
-      <div><b>operating expenditures:</b> {data.results[0].operating_expenditures}</div>
+      <div><b>individual contributions:</b> {individual_contributions}</div>
+      <div><b>politcal committee contributions:</b> {other_political_committee_contributions}</div>
+      <div><b>operating expenditures:</b> {operating_expenditures}</div>
     </div>
   );
 };
@@ -37,17 +44,19 @@ const FinanceData = (props) => {
 const Candidate = (props) => {
   console.log('candidate data', props);
 
+  const { name, party, state } = props;
+
   const [ showFinances, setShowFinances ] = useState(false);
 
   return (
     <div style={{border: '1px solid'}}>
-      <div><b>name:</b> {props.name}</div>
-      <div><b>party:</b> {props.party}</div>
+      <div><b>name:</b> {name}</div>
+      <div><b>party:</b> {party}</div>
       <div>
         <button onClick={() => setShowFinances(!showFinances)}>
           {showFinances ? 'hide' : 'show'} finances
         </button>
-        {showFinances ? <FinanceData candidate_id={props.candidate_id} /> : null}
+        {showFinances ? <FinanceData name={name} state={state} /> : null}
       </div>
     </div>
   );

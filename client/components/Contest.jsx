@@ -5,17 +5,20 @@ import Candidate from './Candidate.jsx';
 const Contest = (props) => {
   console.log('election data', props);
 
-  const candidates = props.candidates.map((data) =>
-    <Candidate {...data} />
-  );
+  const { ballotTitle, type } = props;
+  const candidates = props.candidates || [];
+
+  const children = candidates.length 
+    ? candidates.map((data, i) => (<Candidate {...data} key={`candidate${i}`} state={props.state} />))
+    : (<div>No candidate information available.</div>);
 
   return (
     <div style={{border: '1px solid'}}>
-      <div><b>ballot title:</b> {props.ballotTitle}</div>
-      <div><b>type:</b> {props.type}</div>
+      <div><b>ballot title:</b> {ballotTitle}</div>
+      <div><b>type:</b> {type}</div>
       <div>
         <b>candidates:</b>
-        {candidates}
+        {children}
       </div>
     </div>
   );

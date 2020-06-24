@@ -1,23 +1,29 @@
 import React from 'react';
 
-import Candidate from './Candidate.jsx';
+import Contest from './Contest.jsx';
 
 const Election = (props) => {
   console.log('election data', props);
 
-  const candidates = props.candidates.map((data) => <Candidate {...data} />);
+  const election = props.election || props;
+  const { electionDay } = election;
+  const address = election.pollingLocations ? election.pollingLocations[0].address : null;
+
+  const contests = props.contests 
+    ? props.contests.map((data, i) => <Contest {...data} key={`contest${i}`} state={address.state} />) 
+    : <div>No available contest information.</div>;
 
   return (
     <div>
       <div>
-        <b>date:</b> {props.election.electionDay}
+        <b>date:</b> {electionDay}
       </div>
       <div>
-        <b>address:</b> {props.pollingLocations[0].address.line1}
+        <b>address:</b> {address.line1}
       </div>
       <div>
-        <b>candidates:</b>
-        {candidates}
+        <b>contests:</b>
+        {contests}
       </div>
     </div>
   );
