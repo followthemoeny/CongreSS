@@ -10,7 +10,7 @@ router.get('/officials', apiController.getRepresentatives, (req, res) => {
 router.get('/election', apiController.getElectionInfo, (req, res) => {
   return res.status(200).json(res.locals.elections);
 });
-router.get('/candidate', apiController.getCandidateInfo, (req, res) => {
+router.get('/finances', apiController.getCandidateInfo, (req, res) => {
   return res.status(200).json(res.locals.finance);
 });
 module.exports = router;
