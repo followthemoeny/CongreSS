@@ -73,7 +73,7 @@ const Portal = (props) => {
         <SearchInput
           name="address"
           type="text"
-          placeholder="Enter your address..."
+          placeholder="123 Main St, NY, NY, 10025"
         ></SearchInput>
         <SubmitButton type="submit">
           {searching === true ? '...' : 'Search for my Representatives'}

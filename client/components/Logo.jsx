@@ -7,9 +7,12 @@ const LogoWrapper = styled.div`
   justify-content: center;
   background-color: #e0162b;
   color: white;
-  padding: 5vh 5vh;
+  padding: 2vh 2vh;
+  border-radius: 0px 0px 10px 10px;
   @media ${device.laptop} {
     justify-content: start;
+    padding: 25px 25px;
+    border-radius: 0px;
   }
 `;
 
