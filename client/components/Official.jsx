@@ -34,32 +34,37 @@ const Picture = styled.img`
 const Official = (props) => {
   console.log('offical data', props);
 
+  const { name, party, photoUrl } = props;
+  const websiteUrl = props.urls ? props.urls[0] : null;
+  const phoneNumber = props.phones ? props.phones[0] : null;
+  const address = props.address ? props.address[0] ? props.address[0].line1 : null : null;
+
   const [showDetails, setShowDetails] = useState(false);
 
   const linkTo = {
-    pathname: `/officials/${props.name.replace(/ /g, '-')}`,
+    pathname: `/officials/${name.replace(/ /g, '-')}`,
     state: props,
   };
 
   const details = showDetails ? (
     <>
       <div>
-        <b>address:</b> {props.address[0].line1}
+        <b>address:</b> {address}
       </div>
       <div>
-        <b>phone:</b> {props.phones[0]}
+        <b>phone:</b> {phoneNumber}
       </div>
     </>
   ) : null;
 
   return (
     <CardWrapper>
-      <Picture src={props.photoUrl || 'client/assets/noImage.png'} />
+      <Picture src={photoUrl || 'client/assets/noImage.png'} />
       <InfoWrapper>
-        <div>{props.name}</div>
-        <div>{props.party}</div>
+        <div>{name}</div>
+        <div>{party}</div>
         <div>
-          <a href={props.urls[0]}>{props.urls[0]}</a>
+          <a href={websiteUrl}>{websiteUrl}</a>
         </div>
         <div>
           <button onClick={() => setShowDetails(!showDetails)}>
