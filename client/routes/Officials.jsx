@@ -13,6 +13,29 @@ import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
 
 const ElectionLink = (props) => {
+  const LinkWrapper = styled.div`
+    padding-top: 5px;
+    margin-right: 20px;
+    a {
+      display: flex;
+      justify-content: flex-end;
+      width: 100vw;
+      color: blue;
+      text-decoration: none;
+      margin-right: 5px;
+    }
+  `;
+  const ElectionsButton = styled.button`
+    width: 100px;
+    padding: 10px 0px 10px 0px;
+    margin-top: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #0052a5;
+    color: white;
+  `;
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
@@ -30,15 +53,21 @@ const ElectionLink = (props) => {
     state: elections,
   };
 
-  return <Link to={linkTo}>Upcoming Elections near {Session.address}</Link>;
+  return (
+    <LinkWrapper>
+      <Link to={linkTo}>
+        <ElectionsButton>Upcoming Elections</ElectionsButton>
+      </Link>
+    </LinkWrapper>
+  );
 };
 
 const Grid = (props) => {
   const OfficialsHeader = styled.h2`
     display: flex;
     justify-content: center;
-    color: #0052a5;
-    font-size: 2em;
+    color: #00100b;
+    font-size: 2.2em;
     margin-bottom: 0px;
     font-family: -apple-system;
   `;
