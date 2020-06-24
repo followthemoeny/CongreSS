@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
@@ -95,12 +96,14 @@ const Official = (props) => {
           />
         ) : null}
         <div>
-          <MoreInfoButton
-            rounded={photoUrl}
-            onClick={() => setShowDetails(!showDetails)}
-          >
-            {showDetails ? 'Less' : 'More'} Detail
-          </MoreInfoButton>
+          <Link to={`/officials/${props.id}`}>
+            <MoreInfoButton
+              rounded={photoUrl}
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              {showDetails ? 'Less' : 'More'} Detail
+            </MoreInfoButton>
+          </Link>
           {details}
         </div>
       </InfoWrapper>
