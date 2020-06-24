@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { device } from '../components/style/device';
 import styled from 'styled-components';
-<<<<<<< HEAD
 import Finances from './Finances.jsx';
-=======
 import Plot from 'react-plotly.js';
 import Session from '../Session.js';
 
@@ -64,7 +62,6 @@ const FinanceData = (props) => {
     </div>
   );
 };
->>>>>>> 9f810399f12efc37489904d468255e89c2ba9b2e
 
 const Candidate = (props) => {
   const CardWrapper = styled.div`
