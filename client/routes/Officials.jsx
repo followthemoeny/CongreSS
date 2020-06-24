@@ -5,6 +5,7 @@ import {
   Link,
   useRouteMatch,
   withRouter,
+  useParams,
 } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../components/style/device';
@@ -71,6 +72,8 @@ const ElectionLink = (props) => {
 };
 
 const Grid = (props) => {
+  let { id } = useParams();
+
   const OfficialsHeader = styled.h2`
     display: flex;
     justify-content: center;
@@ -108,8 +111,19 @@ const Grid = (props) => {
     return <h1>An error occurred.</h1>;
   }
 
+  if (id !== undefined) {
+    return (
+      <Official
+        {...officials[id]}
+        key={`official${id}`}
+        id={id}
+        details={true}
+      />
+    );
+  }
+
   const children = officials
-    .map((props, i) => <Official key={`official${i}`} {...props} />)
+    .map((props, i) => <Official {...props} key={`official${i}`} id={i} />)
     .reverse();
 
   return (
@@ -135,8 +149,8 @@ const Officials = (props) => {
           <ElectionLink address={Session.address} />
           <Grid officials={props.location.state} />
         </Route>
-        <Route path={`${path}/:officialName`}>
-          <Profile {...props.location.state} />
+        <Route path={`${path}/:id`}>
+          <Grid officials={props.location.state} />
         </Route>
       </Switch>
     </div>
