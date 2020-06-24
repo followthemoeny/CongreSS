@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { access } from '../util';
@@ -63,14 +63,15 @@ const MoreInfoButton = styled.button`
   color: white;
 `;
 
-const Official = (props) => {
+const OfficialDetails = (props) => {
   console.log('offical data', props);
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
   const { name, party, photoUrl, position, details } = props;
 
-  return details ? (
+  useEffect;
+  return (
     <CardWrapper>
       <InfoWrapper>
         <Name>{name}</Name>
@@ -86,28 +87,6 @@ const Official = (props) => {
         ) : null}
       </InfoWrapper>
     </CardWrapper>
-  ) : (
-    <CardWrapper>
-      <InfoWrapper>
-        <Name>{name}</Name>
-        <Position>{position}</Position>
-        {photoUrl ? (
-          <Picture
-            src={photoUrl || '../assets/noImage.png'}
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
-          />
-        ) : null}
-        <div>
-          <Link to={`/officials/${props.id}`}>
-            <MoreInfoButton rounded={photoUrl}>More Details </MoreInfoButton>
-          </Link>
-          {details}
-        </div>
-      </InfoWrapper>
-    </CardWrapper>
   );
 };
-
-export default Official;
+export default OfficialDetails;

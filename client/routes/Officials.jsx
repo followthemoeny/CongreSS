@@ -12,8 +12,9 @@ import { device } from '../components/style/device';
 import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
+import OfficialDetails from '../components/OfficialDetails.jsx';
 
-const ElectionLink = (props) => {
+const ElectionLink = ({ details }) => {
   const ButtonsWrapepr = styled.div`
     display: flex;
     justify-content: space-between;
@@ -57,7 +58,7 @@ const ElectionLink = (props) => {
   return (
     <ButtonsWrapepr>
       <LinkWrapper>
-        <Link to="/">
+        <Link to={details ? '/officials' : '/'}>
           <ElectionsButton>Back</ElectionsButton>
         </Link>
       </LinkWrapper>
@@ -113,7 +114,7 @@ const Grid = (props) => {
 
   if (id !== undefined) {
     return (
-      <Official
+      <OfficialDetails
         {...officials[id]}
         key={`official${id}`}
         id={id}
@@ -150,6 +151,7 @@ const Officials = (props) => {
           <Grid officials={props.location.state} />
         </Route>
         <Route path={`${path}/:id`}>
+          <ElectionLink address={Session.address} details={true} />
           <Grid officials={props.location.state} />
         </Route>
       </Switch>
