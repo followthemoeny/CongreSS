@@ -26,7 +26,7 @@ const FinanceData = (props) => {
     individual_contributions,
     other_political_committee_contributions,
     operating_expenditures,
-  } = access(data).results[0]({});
+  } = data;
 
   return (
     <div style={{ border: '1px solid' }}>
