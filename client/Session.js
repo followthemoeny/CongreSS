@@ -21,57 +21,49 @@ const Session = {
     });
 
     return Session.getOfficals(address)
-      .catch(() => {
+      .catch((err) => {
         value(Session.ADDRESS, null);
-        return Promise.reject();
+        return Promise.reject(err);
       });
   },
 
   getOfficals() {
-    return new Promise((resolve, reject) => {
-      const officials = value(Session.OFFICIALS);
+    const officials = value(Session.OFFICIALS);
 
-      if (officials) {
-        return resolve(officials);
-      }
+    if (officials) {
+      return Promise.resolve(officials);
+    }
 
-      return httpGet('/api/officials', { address: Session.address })
-        .then((data) => resolve(value(Session.OFFICIALS, data)));
-    });
+    return httpGet('/api/officials', { address: Session.address })
+      .then((data) => value(Session.OFFICIALS, data));
   },
 
   getElections() {
-    return new Promise((resolve, reject) => {
-      const elections = value(Session.ELECTIONS);
+    const elections = value(Session.ELECTIONS);
 
-      if (elections) {
-        return resolve(elections); 
-      }
+    if (elections) {
+      return Promise.resolve(elections); 
+    }
 
-      return httpGet('/api/election', { address: Session.address })
-        .then((data) => resolve(value(Session.ELECTIONS, Array.isArray(data) ? data : [data]))); //fix server
-    }); 
+    return httpGet('/api/election', { address: Session.address })
+      .then((data) => value(Session.ELECTIONS, Array.isArray(data) ? data : [data])); //fix server
   },
 
   getFinances(name, state) {
-    return new Promise((resolve, reject) => {
-      const finances = value(Session.FINANCES);
+    const finances = value(Session.FINANCES);
 
-      const key = `${name}:${state}`;
+    const key = `${name}:${state}`;
 
-      if (finances[key]) {
-        return resolve(finances[key]);
-      }
+    if (finances[key]) {
+      return Promise.resolve(finances[key]);
+    }
 
-      console.log(name, state);
-
-      return httpGet('/api/candidate', { name, state })
-        .then((data) => {
-          finances[key] = data;
-          value(Session.FINANCES, finances);
-          resolve(data);
-        });
-    });
+    return httpGet('/api/candidate', { name, state })
+      .then((data) => {
+        finances[key] = data;
+        value(Session.FINANCES, finances);
+        return data;
+      });
   }
 };
 

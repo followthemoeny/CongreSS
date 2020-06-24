@@ -45,5 +45,5 @@ export const clientStore = (name, session) => {
 
 export const httpGet = (uri, query) => {
   return fetch(`${uri}?${querystring.encode(query)}`)
-    .then((response) => response.status === 200 ? response.json() : Promise.reject())
+    .then((response) => response.status === 200 ? response.json() : Promise.reject(response.status));
 };
