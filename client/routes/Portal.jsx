@@ -60,6 +60,7 @@ const Portal = (props) => {
         props.history.push('/officials');
       })
       .catch((err) => {
+        console.log(err);
         setSearching("Sorry, that address doesn't seem to be valid.");
       });
   };
