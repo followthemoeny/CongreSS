@@ -53,12 +53,12 @@ apiController.getCandidateInfo = async (req, res, next) => {
   if (data.error) return next(data.error.message);
   if (!data.results.length) return res.sendStatus(404);
   const { candidate_id } = data.results[0];
-  console.log(candidate_id);
-  const financeResp = await fetch(`https://api.open.fec.gov/v1/candidate/${candidate_id}/totals/?sort_null_only=false&sort=-cycle&page=1&sort_hide_null=false&sort_nulls_last=false&api_key=DEMO_KEY&per_page=20
+  const financeResp = await fetch(`https://api.open.fec.gov/v1/candidate/${candidate_id}/totals/?sort=-cycle&api_key=${fec}&sort_nulls_last=false&page=1&election_full=true&sort_hide_null=false&sort_null_only=false&per_page=20
   `);
   const financeData = await financeResp.json();
+
   if (financeData.error) return next(data.error.message);
-  res.locals.finance = financeData;
+  [res.locals.finance] = financeData.results;
   return next();
 };
 
