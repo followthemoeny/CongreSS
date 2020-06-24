@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { access } from '../util';
 import { device } from '../components/style/device';
 
 const CardWrapper = styled.div`
@@ -32,19 +32,13 @@ const Picture = styled.img`
 `;
 
 const Official = (props) => {
-  console.log('offical data', props);
-
-  const { name, party, photoUrl } = props;
-  const websiteUrl = props.urls ? props.urls[0] : null;
-  const phoneNumber = props.phones ? props.phones[0] : null;
-  const address = props.address ? props.address[0] ? props.address[0].line1 : null : null;
-
   const [showDetails, setShowDetails] = useState(false);
 
-  const linkTo = {
-    pathname: `/officials/${name.replace(/ /g, '-')}`,
-    state: props,
-  };
+  console.log('offical data', props);
+  const websiteUrl = access(props).urls[0](null);
+  const phoneNumber = access(props).phones[0](null);
+  const address = access(props).address[0].line1(null);
+  const { name, party, photoUrl } = props;
 
   const details = showDetails ? (
     <>

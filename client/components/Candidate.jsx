@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import Session from '../Session.js';
+import { access } from '../util';
 
 const FinanceData = (props) => {
   const [ data, setData ] = useState(null);
@@ -11,26 +11,23 @@ const FinanceData = (props) => {
     .catch((err) => setData(undefined));
   }, []);
 
-  console.log('financial data', data);
-
   if (data === null) {
     return (
       <h1>Loading...</h1>
     )
   }
-
   if (!data) {
     return (
       <h1>No financial information available for this candidate.</h1>
     )
   }
 
-  const results = data.results ? data.results[0] || {} : {};
+  console.log('financial data', data);
   const {
     individual_contributions, 
     other_political_committee_contributions, 
     operating_expenditures
-  } = results;
+  } = access(data).results[0]({});
 
   return (
     <div style={{border: '1px solid'}}>
@@ -42,11 +39,10 @@ const FinanceData = (props) => {
 };
 
 const Candidate = (props) => {
-  console.log('candidate data', props);
-
-  const { name, party, state } = props;
-
   const [ showFinances, setShowFinances ] = useState(false);
+
+  console.log('candidate data', props);
+  const { name, party, state } = props;
 
   return (
     <div style={{border: '1px solid'}}>
