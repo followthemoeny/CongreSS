@@ -36,25 +36,24 @@ const FinanceData = (props) => {
       marker: { color: 'red' },
     },
     {
-      type: 'bar', 
-      x: [1, 2, 3], 
+      type: 'bar',
+      x: [1, 2, 3],
       y: [
-        individual_contributions, 
-        other_political_committee_contributions, 
-        operating_expenditures
-      ]
-    }
+        individual_contributions,
+        other_political_committee_contributions,
+        operating_expenditures,
+      ],
+    },
   ];
 
   return (
     <div style={{ border: '1px solid' }}>
-       <Plot data={plotData} layout={ {width: 320, height: 240, title: 'A Fancy Plot'} } />
+      <Plot data={plotData} layout={{ width: 320, height: 240, title: 'A Fancy Plot' }} />
       <div>
         <b>individual contributions:</b> {individual_contributions}
       </div>
       <div>
-        <b>politcal committee contributions:</b>{' '}
-        {other_political_committee_contributions}
+        <b>politcal committee contributions:</b> {other_political_committee_contributions}
       </div>
       <div>
         <b>operating expenditures:</b> {operating_expenditures}
