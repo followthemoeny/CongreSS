@@ -21,6 +21,8 @@ const LogoContent = styled.span`
   }
 `;
 
+LogoContent.displayName = 'logoSpan'
+
 const Logo = () => {
   return (
     <LogoWrapper>
