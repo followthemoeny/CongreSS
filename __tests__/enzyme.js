@@ -6,7 +6,8 @@ import toJson from 'enzyme-to-json';
 import 'jest-styled-components';
 
 
-import Candidate from '../client/components/Candidate';
+
+// import Candidate from '../client/components/Candidate';
 import Contest from '../client/components/Contest';
 import Election from '../client/components/Election';
 import Logo from '../client/components/Logo';
@@ -54,15 +55,15 @@ describe('React unit tests', ()=>{
 
   })
 
-  describe('Candidate', () => {
-    let wrapper
+  // describe('Candidate', () => {
+  //   let wrapper
 
-    beforeAll(() => {
-      wrapper = shallow(<Candidate />);
-    })
+  //   beforeAll(() => {
+  //     wrapper = shallow(<Candidate />);
+  //   })
 
 
-  })
+  // })
 
   describe('Contest', () => {
     let wrapper
