@@ -109,7 +109,7 @@ const Grid = (props) => {
   }
 
   const officials = data.officials;
-  const state = access(officials).normalizedInput.state("");
+  const state = access(data).normalizedInput.state("");
 
   if (!officials || !officials.length) {
     return <h1>An error occurred.</h1>;

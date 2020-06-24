@@ -80,7 +80,7 @@ const Official = (props) => {
       <div>
         <b>phone:</b> {phoneNumber}
       </div>
-      <Finances name={name} state={state} />
+      <Finances name={name} state={props.state} />
     </>
   ) : null;
   return (
