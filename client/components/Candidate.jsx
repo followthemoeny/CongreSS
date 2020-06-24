@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { device } from '../components/style/device';
 import styled from 'styled-components';
-
+import Plot from 'react-plotly.js';
 import Session from '../Session.js';
-import { access } from '../util';
 
 const FinanceData = (props) => {
   const [data, setData] = useState(null);
@@ -26,10 +25,30 @@ const FinanceData = (props) => {
     individual_contributions,
     other_political_committee_contributions,
     operating_expenditures,
-  } = access(data).results[0]({});
+  } = data;
+
+  const plotData = [
+    {
+      x: [1, 2, 3],
+      y: [2, 6, 3],
+      type: 'scatter',
+      mode: 'lines+markers',
+      marker: { color: 'red' },
+    },
+    {
+      type: 'bar', 
+      x: [1, 2, 3], 
+      y: [
+        individual_contributions, 
+        other_political_committee_contributions, 
+        operating_expenditures
+      ]
+    }
+  ];
 
   return (
     <div style={{ border: '1px solid' }}>
+       <Plot data={plotData} layout={ {width: 320, height: 240, title: 'A Fancy Plot'} } />
       <div>
         <b>individual contributions:</b> {individual_contributions}
       </div>
