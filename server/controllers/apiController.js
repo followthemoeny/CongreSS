@@ -9,7 +9,10 @@ apiController.getElectionInfo = (req, res, next) => {
   const { address } = req.query;
   if (!address) return res.sendStatus(400);
   fetch(`https://www.googleapis.com/civicinfo/v2/voterinfo?key=${google}&address=${address}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 200) return res.sendStatus(response.status);
+      return response.json();
+    })
     .then((data) => {
       const { election, pollingLocations, contests } = data;
       const electionObj = { ...election, pollingLocations };
@@ -17,7 +20,9 @@ apiController.getElectionInfo = (req, res, next) => {
       res.locals.elections = electionObj;
       next();
     })
-    .catch((error) => next(error));
+    .catch((error) => {
+      return next(error);
+    });
 };
 
 apiController.getRepresentatives = (req, res, next) => {
@@ -25,7 +30,10 @@ apiController.getRepresentatives = (req, res, next) => {
   if (!address) res.sendStatus(400);
 
   fetch(`https://www.googleapis.com/civicinfo/v2/representatives?key=${google}&address=${address}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 200) return res.sendStatus(response.status);
+      return response.json();
+    })
     .then((data) => {
       const { offices, officials } = data;
       const reps = [];

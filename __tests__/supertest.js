@@ -18,7 +18,7 @@ describe('Route Integration', () => {
   describe('/api', () => {
     describe('GET api/officials', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server).get('/api/officials/thisaintanaddress').expect(400);
+        return request(server).get('/api/officials?address=thisaintanaddress').expect(400);
       });
 
       it('responds with a 200 status and a json object', () => {
@@ -30,7 +30,7 @@ describe('Route Integration', () => {
 
       it('response is an array of objects with minimum keys name, addess,party, position and photoURL', () => {
         return request(server)
-          .get('/api/officials/144 2nd ave 10003')
+          .get('/api/officials?address=144 2nd ave 10003')
           .expect((res) => {
             expect(Array.isArray(res.body)).toEqual(true);
             res.body.forEach((official) => {
@@ -45,12 +45,12 @@ describe('Route Integration', () => {
     });
     describe('GET api/elections', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server).get('/api/elections/thisaintanaddress').expect(400);
+        return request(server).get('/api/elections?address=thisaintanaddress').expect(400);
       });
 
       it('responds with a 200 status and a json object', () => {
         return request(server)
-          .get('/api/elections/144 2nd ave 10003')
+          .get('/api/elections?address=144 2nd ave 10003')
           .expect('Content-Type', /application\/json/)
           .expect(200);
       });
