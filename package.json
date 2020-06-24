@@ -35,6 +35,7 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "path": "^0.12.7",
+    "querystring": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
