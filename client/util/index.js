@@ -10,8 +10,12 @@ export const access = (value) => {
       }
       return proxy;
     },
-    apply(defaultVal) {
-      return context.value || defaultVal;
+    apply(target, thisArg, [defaultVal]) {
+      console.log("def", defaultVal);
+      if (context.value === undefined) {
+        return defaultVal;
+      }
+      return context.value;
     }
   });
   return proxy;
