@@ -5,30 +5,60 @@ import { device } from '../components/style/device';
 
 const CardWrapper = styled.div`
   display: flex;
-  background-color: white;
-  margin: 15px 15px 15px 15px;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 30px 40px 30px;
+  padding-top: 20px;
   padding: 10px;
   max-width: 80vw;
   min-width: 80vw;
   border-radius: 4px;
-  box-shadow: 2px 2px 5px -3px #000000;
   @media ${device.laptop} {
     max-width: 100px;
-    min-width: 30vw;
+    min-width: 25vw;
+  }
+  @media ${device.desktop} {
+    min-width: 15vw;
   }
 `;
 
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-left: 10px;
 `;
 
 const Picture = styled.img`
-  max-width: 100px;
-  min-width: 75px;
-  max-height: 100px;
-  min-height: 100px;
+  object-fit: cover;
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+  border-radius: 5% 5% 0 0;
+`;
+
+const Name = styled.h2`
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+`;
+
+const Position = styled.h3`
+  padding: 0px 0px 5px 0px;
+  margin: 0;
+`;
+
+const MoreInfoButton = styled.button`
+  width: 300px;
+  padding: 20px 18px 20px 18px;
+  margin-top: 0px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: ${(props) => (props.rounded ? '0 0 10px 10px;' : '10px;')}
+  background-color: #0052a5;
+  color: white;
 `;
 
 const Official = (props) => {
@@ -38,7 +68,7 @@ const Official = (props) => {
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
-  const { name, party, photoUrl } = props;
+  const { name, party, photoUrl, position } = props;
 
   const details = showDetails ? (
     <>
@@ -50,20 +80,27 @@ const Official = (props) => {
       </div>
     </>
   ) : null;
-
   return (
     <CardWrapper>
-      <Picture src={photoUrl || 'client/assets/noImage.png'} />
       <InfoWrapper>
-        <div>{name}</div>
-        <div>{party}</div>
+        <Name>{name}</Name>
+        <Position>{position}</Position>
+        {photoUrl ? (
+          <Picture
+            src={photoUrl}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              photoUrl = null;
+            }}
+          />
+        ) : null}
         <div>
-          <a href={websiteUrl}>{websiteUrl}</a>
-        </div>
-        <div>
-          <button onClick={() => setShowDetails(!showDetails)}>
-            {showDetails ? 'less' : 'more'} detail
-          </button>
+          <MoreInfoButton
+            rounded={photoUrl}
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            {showDetails ? 'Less' : 'More'} Detail
+          </MoreInfoButton>
           {details}
         </div>
       </InfoWrapper>

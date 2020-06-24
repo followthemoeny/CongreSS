@@ -1,10 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Session from '../Session.js';
 import Election from '../components/Election.jsx';
 import Logo from '../components/Logo.jsx';
 import { device } from '../components/style/device';
+
+const ElectionLink = (props) => {
+  const ButtonsWrapepr = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 10px;
+  `;
+  const LinkWrapper = styled.div`
+    a {
+      display: flex;
+      justify-content: flex-end;
+      color: blue;
+      text-decoration: none;
+    }
+  `;
+  const ElectionsButton = styled.button`
+    width: 100px;
+    padding: 5px 0px 5px 0px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+  `;
+  const [elections, setElections] = useState(null);
+
+  useEffect(() => {
+    Session.getElections()
+      .then((data) => setElections(data))
+      .catch((err) => setElections(undefined));
+  }, []);
+
+  if (!elections) {
+    return null;
+  }
+
+  const linkTo = {
+    pathname: '/elections',
+    state: elections,
+  };
+
+  return (
+    <ButtonsWrapepr>
+      <LinkWrapper>
+        <Link to="/officials">
+          <ElectionsButton>Officials</ElectionsButton>
+        </Link>
+      </LinkWrapper>
+    </ButtonsWrapepr>
+  );
+};
 
 const Elections = (props) => {
   const [elections, setElections] = useState(null);
@@ -20,7 +72,7 @@ const Elections = (props) => {
   }
 
   if (!elections.length) {
-    return <h1>No upcoming elections near {Session.address}</h1>;
+    return <h1>No upcoming elections near you</h1>;
   }
 
   if (elections === undefined) {
@@ -54,7 +106,8 @@ const Elections = (props) => {
   return (
     <div>
       <Logo />
-      <ElectionsHeader>Elections around {Session.address}:</ElectionsHeader>
+      <ElectionLink />
+      <ElectionsHeader>Elections near you:</ElectionsHeader>
       <ElectionsWrapper>{children}</ElectionsWrapper>
     </div>
   );

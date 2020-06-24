@@ -13,6 +13,29 @@ import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
 
 const ElectionLink = (props) => {
+  const ButtonsWrapepr = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 10px;
+  `;
+  const LinkWrapper = styled.div`
+    a {
+      display: flex;
+      justify-content: flex-end;
+      color: blue;
+      text-decoration: none;
+    }
+  `;
+  const ElectionsButton = styled.button`
+    width: 100px;
+    padding: 5px 0px 5px 0px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+  `;
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
@@ -30,15 +53,29 @@ const ElectionLink = (props) => {
     state: elections,
   };
 
-  return <Link to={linkTo}>Upcoming Elections near {Session.address}</Link>;
+  return (
+    <ButtonsWrapepr>
+      <LinkWrapper>
+        <Link to="/">
+          <ElectionsButton>Back</ElectionsButton>
+        </Link>
+      </LinkWrapper>
+
+      <LinkWrapper>
+        <Link to={linkTo}>
+          <ElectionsButton>Elections</ElectionsButton>
+        </Link>
+      </LinkWrapper>
+    </ButtonsWrapepr>
+  );
 };
 
 const Grid = (props) => {
   const OfficialsHeader = styled.h2`
     display: flex;
     justify-content: center;
-    color: #0052a5;
-    font-size: 2em;
+    color: #00100b;
+    font-size: 2.2em;
     margin-bottom: 0px;
     font-family: -apple-system;
   `;
