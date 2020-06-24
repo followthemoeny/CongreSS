@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import Contest from './Contest.jsx';
 import { access } from '../util';
 
@@ -10,10 +11,20 @@ const Election = (props) => {
   const address = access(election).pollingLocations[0].address({});
   const { electionDay } = election;
 
-  const children = contests.length
-    ? contests.map((data, i) => <Contest {...data} key={`contest${i}`} state={address.state} />) 
-    : <div>No available contest information.</div>;
+  const children = contests.length ? (
+    contests.map((data, i) => (
+      <Contest {...data} key={`contest${i}`} state={address.state} />
+    ))
+  ) : (
+    <div>No available contest information.</div>
+  );
 
+  const ElectionHeader = styled.div`
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+  `;
   return (
     <div>
       <div>
@@ -22,10 +33,8 @@ const Election = (props) => {
       <div>
         <b>address:</b> {address.line1}
       </div>
-      <div>
-        <b>contests:</b>
-        {children}
-      </div>
+      <ElectionHeader>Elections:</ElectionHeader>
+      <div>{children}</div>
     </div>
   );
 };

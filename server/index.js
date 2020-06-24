@@ -14,6 +14,7 @@ app.use(cookieparser());
 app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('asd');
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
   app.use('/', (req, res) => {
@@ -24,15 +25,13 @@ if (process.env.NODE_ENV === 'production') {
 // Error Handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: `'MIDDLEWARE ERROR', ${err}`,
+    log: err,
     status: 400,
     message: { err: 'An error occurred' },
   };
   const errorObj = { ...defaultErr, ...err };
-  console.log(errorObj.log);
-  res.status(errorObj.status).send(JSON.stringify(errorObj.message));
+  console.log(`MIDDLEWARE ERROR: ${errorObj.log}`);
+  res.status(errorObj.status).send(JSON.stringify(errorObj.log));
 });
 
-//app.listen(PORT, () => console.log('listening on port 3000'));
-//module.exports = app;
 module.exports = app.listen(PORT, () => console.log('listening on port 3000'));
