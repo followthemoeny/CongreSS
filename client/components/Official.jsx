@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { access } from '../util';
 import { device } from '../components/style/device';
 
 const CardWrapper = styled.div`
@@ -32,34 +32,33 @@ const Picture = styled.img`
 `;
 
 const Official = (props) => {
-  console.log('offical data', props);
-
   const [showDetails, setShowDetails] = useState(false);
 
-  const linkTo = {
-    pathname: `/officials/${props.name.replace(/ /g, '-')}`,
-    state: props,
-  };
+  console.log('offical data', props);
+  const websiteUrl = access(props).urls[0](null);
+  const phoneNumber = access(props).phones[0](null);
+  const address = access(props).address[0].line1(null);
+  const { name, party, photoUrl } = props;
 
   const details = showDetails ? (
     <>
       <div>
-        <b>address:</b> {props.address[0].line1}
+        <b>address:</b> {address}
       </div>
       <div>
-        <b>phone:</b> {props.phones[0]}
+        <b>phone:</b> {phoneNumber}
       </div>
     </>
   ) : null;
 
   return (
     <CardWrapper>
-      <Picture src={props.photoUrl || 'client/assets/noImage.png'} />
+      <Picture src={photoUrl || 'client/assets/noImage.png'} />
       <InfoWrapper>
-        <div>{props.name}</div>
-        <div>{props.party}</div>
+        <div>{name}</div>
+        <div>{party}</div>
         <div>
-          <a href={props.urls[0]}>{props.urls[0]}</a>
+          <a href={websiteUrl}>{websiteUrl}</a>
         </div>
         <div>
           <button onClick={() => setShowDetails(!showDetails)}>

@@ -4,13 +4,13 @@
   "description": "money shall be shown",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "startwindows": "set \"NODE_ENV=production\" && node server/server.js",
+    "test": "set \"NODE_ENV=production\" && jest --verbose",
+    "startwindows": "set \"NODE_ENV=production\" && node server/index.js",
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
-    "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
-    "start": "NODE_ENV=production node server/server.js",
+    "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/index.js\"",
+    "start": "NODE_ENV=production node server/index.js",
     "build": "cross-env NODE_ENV=production webpack ",
-    "dev": "nodemon server/server.js & cross-env NODE_ENV=development webpack-dev-server --open"
+    "dev": "nodemon server/index.js & cross-env NODE_ENV=development webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -25,10 +25,17 @@
     "url": "https://github.com/followthemoeny/showmethemoney/issues"
   },
   "homepage": "https://github.com/followthemoeny/showmethemoney#readme",
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js"
+  },
   "dependencies": {
+    "chai": "^4.2.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "path": "^0.12.7",
+    "querystring": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -44,9 +51,14 @@
     "webpack-dev-server": "^3.11.0",
     "nodemon": "^2.0.3",
     "concurrently": "^5.2.0",
+    "supertest": "^3.3.0",
+    "jest": "^23.6.0",
+    "babel-jest": "^23.6.0",
     "cross-env": "^7.0.2"
   },
   "nodemonConfig": {
-    "watch": ["server"]
+    "watch": [
+      "server"
+    ]
   }
 }

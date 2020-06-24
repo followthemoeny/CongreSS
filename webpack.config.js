@@ -1,6 +1,6 @@
-const path = require('path')
-const mode = process.env.NODE_ENV
-const webpack = require('webpack')
+const path = require('path');
+const mode = process.env.NODE_ENV;
+const webpack = require('webpack');
 module.exports = {
   devServer: {
     publicPath: '/build/',
