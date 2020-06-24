@@ -33,12 +33,8 @@ const Election = (props) => {
       <div>
         <b>address:</b> {address.line1}
       </div>
-      <div>
-        <b>contests:</b>
-        {children}
-      </div>
       <ElectionHeader>Elections:</ElectionHeader>
-      <div>{contests}</div>
+      <div>{children}</div>
     </div>
   );
 };
