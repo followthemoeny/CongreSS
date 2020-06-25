@@ -29,7 +29,6 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
 `;
 InfoWrapper.displayName = 'InfoWrapper';
 
@@ -54,6 +53,8 @@ Name.displayName = 'Name';
 const Position = styled.h3`
   padding: 0px 0px 5px 0px;
   margin: 0;
+  display: flex;
+  text-align: center;
 `;
 Position.displayName = 'Position';
 

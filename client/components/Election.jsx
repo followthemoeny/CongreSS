@@ -19,24 +19,42 @@ const Election = (props) => {
     <div className = 'NoContest'>No available contest information.</div>
   );
 
+  const ElectionWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
   const ElectionHeader = styled.div`
-    padding: 20px 10px;
+    padding-top: 20px;
     display: flex;
     justify-content: center;
     font-size: 2em;
+    font-weight: bold;
   `;
-  ElectionHeader.displayName = 'ElectionHeader'
+
+  ElectionHeader.displayName = 'ElectionHeader';
+
+  const Date = styled.div`
+    font-weight: bold;
+    font-size: 1.4em;
+    padding-bottom: 0.25em;
+    color: red;
+  `;
+
+  const Address = styled(Date)`
+    font-size: 1em;
+    color: black;
+  `;
+
   return (
-    <div>
-      <div>
-        <b>date:</b> {electionDay}
-      </div>
-      <div>
-        <b>address:</b> {address.line1}
-      </div>
-      <ElectionHeader>Elections:</ElectionHeader>
+    <ElectionWrapper>
+      <Date>{electionDay}</Date>
+      <Address>
+        <b>Address:</b> {address.line1}
+      </Address>
+      <ElectionHeader>Contests:</ElectionHeader>
       <div>{children}</div>
-    </div>
+    </ElectionWrapper>
   );
 };
 

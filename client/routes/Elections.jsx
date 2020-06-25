@@ -72,11 +72,11 @@ const Elections = (props) => {
   }
 
   if (!elections.length) {
-    return <h1>No upcoming elections near you</h1>;
+    return <ElectionsHeader>No upcoming elections near you</ElectionsHeader>;
   }
 
   if (elections === undefined) {
-    return <h1>An error occurred.</h1>;
+    return <ElectionsHeader>An error occurred.</ElectionsHeader>;
   }
 
   const ElectionsHeader = styled.h2`
@@ -99,9 +99,7 @@ const Elections = (props) => {
     }
   `;
 
-  const children = elections.map((props, i) => (
-    <Election key={`election${i}`} {...props} />
-  ));
+  const children = elections.map((props, i) => <Election key={`election${i}`} {...props} />);
 
   return (
     <div>

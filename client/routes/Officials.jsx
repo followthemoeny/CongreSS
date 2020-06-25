@@ -21,7 +21,7 @@ const ElectionLink = ({ details }) => {
     justify-content: space-between;
     margin: 15px 10px;
   `;
-  ButtonsWrapepr.displayName = 'ButtonsWrapper'
+  ButtonsWrapepr.displayName = 'ButtonsWrapper';
 
   const LinkWrapper = styled.div`
     a {
@@ -31,7 +31,7 @@ const ElectionLink = ({ details }) => {
       text-decoration: none;
     }
   `;
-   LinkWrapper.displayName = 'LinkWrapper'
+  LinkWrapper.displayName = 'LinkWrapper';
 
   const ElectionsButton = styled.button`
     width: 100px;
@@ -43,7 +43,7 @@ const ElectionLink = ({ details }) => {
     background-color: red;
     color: white;
   `;
-  ElectionsButton.displayName = 'ElectionsButton'
+  ElectionsButton.displayName = 'ElectionsButton';
 
   const [elections, setElections] = useState(null);
 
@@ -52,10 +52,6 @@ const ElectionLink = ({ details }) => {
       .then((data) => setElections(data))
       .catch((err) => setElections(undefined));
   }, []);
-
-  if (!elections) {
-    return null;
-  }
 
   const linkTo = {
     pathname: '/elections',
@@ -69,12 +65,13 @@ const ElectionLink = ({ details }) => {
           <ElectionsButton>Back</ElectionsButton>
         </Link>
       </LinkWrapper>
-
-      <LinkWrapper>
-        <Link to={linkTo}>
-          <ElectionsButton>Elections</ElectionsButton>
-        </Link>
-      </LinkWrapper>
+      {elections ? (
+        <LinkWrapper>
+          <Link to={linkTo}>
+            <ElectionsButton>Elections</ElectionsButton>
+          </Link>
+        </LinkWrapper>
+      ) : null}
     </ButtonsWrapepr>
   );
 };
@@ -90,7 +87,7 @@ const Grid = (props) => {
     margin-bottom: 0px;
     font-family: -apple-system;
   `;
-  OfficialsHeader.displayName = 'OfficialsHeader'
+  OfficialsHeader.displayName = 'OfficialsHeader';
 
   const OfficialsWrapper = styled.div`
     display: flex;
@@ -104,7 +101,7 @@ const Grid = (props) => {
       flex-wrap: wrap;
     }
   `;
-  OfficialsWrapper.displayName = "OfficialsWrapper"
+  OfficialsWrapper.displayName = 'OfficialsWrapper';
 
   const [data, setData] = useState(null);
 
@@ -127,7 +124,13 @@ const Grid = (props) => {
 
   if (id !== undefined) {
     return (
-      <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
+      <OfficialsWrapper>
+        <OfficialDetails
+          {...officials[id]}
+          key={`official${id}`}
+          state={state}
+        />
+      </OfficialsWrapper>
     );
   }
 
