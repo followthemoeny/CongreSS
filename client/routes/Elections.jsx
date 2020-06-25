@@ -6,6 +6,7 @@ import Election from '../components/Election.jsx';
 import Logo from '../components/Logo.jsx';
 import { device } from '../components/style/device';
 import { WaveLoading } from 'react-loadingg';
+import colors from '../components/style/colors';
 
 const ElectionLink = (props) => {
   const ButtonsWrapepr = styled.div`
@@ -28,7 +29,7 @@ const ElectionLink = (props) => {
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    background-color: #e0162b;
+    background-color: ${colors.red};
     color: white;
   `;
   const [elections, setElections] = useState(null);
@@ -55,7 +56,7 @@ const ElectionLink = (props) => {
           <ElectionsButton>Officials</ElectionsButton>
         </Link>
       </LinkWrapper>
-    </ButtonsWrapepr>
+    </ButtonsWrapepr> 
   );
 };
 
@@ -87,7 +88,7 @@ const Elections = (props) => {
   const ElectionsHeader = styled.h2`
     display: flex;
     justify-content: center;
-    color: #0052a5;
+    color: ${colors.blue};
     font-size: 2em;
     margin-bottom: 0px;
   `;

@@ -5,6 +5,7 @@ import { access } from '../util';
 import { device } from '../components/style/device';
 import Finances from './Finances.jsx';
 import img from '../assets/noImage.png';
+import colors from '../components/style/colors';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -69,13 +70,13 @@ const MoreInfoButton = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 0 0 10px 10px;
-  background-color: #0052a5;
+  background-color: ${colors.blue};
   color: white;
   &:hover {
-    background-color: #0052bd;
+    background-color: ${colors.hoverBlue};
   }
   &:active {
-    box-shadow: inset 0px 0px 20px 0px #005276;
+    box-shadow: inset 0px 0px 20px 0px ${colors.activeBlue};
   }
 `;
 MoreInfoButton.displayName = 'MoreInfoButton';

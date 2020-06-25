@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { device } from '../components/style/device';
+import colors from '../components/style/colors';
 import styled from 'styled-components';
 import Finances from './Finances.jsx';
 
@@ -39,7 +40,7 @@ const Candidate = (props) => {
   font-weight: bold;
   border: none;
   border-radius: ${(props) => (props.rounded ? '0 0 10px 10px;' : '10px;')}
-  background-color: #0052a5;
+  background-color: ${colors.blue};
   color: white;
 `;
   CardWrapper.displayName = 'CardWrapper';
