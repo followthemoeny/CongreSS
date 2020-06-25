@@ -64,25 +64,29 @@ const MoreInfoButton = styled.button`
 `;
 
 const Official = (props) => {
-  const [showDetails, setShowDetails] = useState(false);
-
   console.log('offical data', props);
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0]({});
-  const { name, party, photoUrl, position } = props;
+  const { name, party, photoUrl, position, officialId } = props;
 
-  const details = showDetails ? (
-    <>
-      <div>
-        <b>address:</b> {address.line1}
-      </div>
-      <div>
-        <b>phone:</b> {phoneNumber}
-      </div>
-      <Finances name={name} state={props.state} />
-    </>
-  ) : null;
+  const details =
+    officialId !== undefined ? (
+      <Link to={`/officials/${officialId}`}>
+        <MoreInfoButton rounded={photoUrl}>More Detail</MoreInfoButton>
+      </Link>
+    ) : (
+      <>
+        <div>
+          <b>address:</b> {address.line1}
+        </div>
+        <div>
+          <b>phone:</b> {phoneNumber}
+        </div>
+        <Finances name={name} state={props.state} />
+      </>
+    );
+
   return (
     <CardWrapper>
       <InfoWrapper>
@@ -97,17 +101,7 @@ const Official = (props) => {
             }}
           />
         ) : null}
-        <div>
-          <Link to={`/officials/${props.id}`}>
-            <MoreInfoButton
-              rounded={photoUrl}
-              onClick={() => setShowDetails(!showDetails)}
-            >
-              {showDetails ? 'Less' : 'More'} Detail
-            </MoreInfoButton>
-          </Link>
-          {details}
-        </div>
+        <div>{details}</div>
       </InfoWrapper>
     </CardWrapper>
   );

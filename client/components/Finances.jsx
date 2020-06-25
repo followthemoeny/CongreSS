@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
 import Session from '../Session.js';
+import { Bar } from 'react-chartjs-2';
 
 const Finances = (props) => {
   const [data, setData] = useState(null);
@@ -25,28 +25,48 @@ const Finances = (props) => {
     operating_expenditures,
   } = data;
 
-  const plotData = [
-    {
-      x: [1, 2, 3],
-      y: [2, 6, 3],
-      type: 'scatter',
-      mode: 'lines+markers',
-      marker: { color: 'red' },
+  const chartData = {
+    data: {
+      datasets: [
+        {
+          label: 'individual contributions',
+          backgroundColor: 'rgba(75,192,192,1)',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 2,
+          data: [individual_contributions],
+        },
+        {
+          label: 'committee contributions',
+          backgroundColor: 'rgba(75,192,192,1)',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 2,
+          data: [other_political_committee_contributions],
+        },
+        {
+          label: 'operating expenditures',
+          backgroundColor: 'rgba(75,192,192,1)',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 2,
+          data: [operating_expenditures],
+        },
+      ],
     },
-    {
-      type: 'bar', 
-      x: [1, 2, 3], 
-      y: [
-        individual_contributions, 
-        other_political_committee_contributions, 
-        operating_expenditures
-      ]
-    }
-  ];
+    options: {
+      title: {
+        display: true,
+        text: 'Campaign Finances',
+        fontSize: 20,
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+    },
+  };
 
   return (
     <div style={{ border: '1px solid' }}>
-       <Plot data={plotData} layout={ {width: 320, height: 240, title: 'Financial Data'} } />
+      <Bar {...chartData} />
     </div>
   );
 };
