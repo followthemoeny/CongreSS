@@ -171,15 +171,17 @@ const OfficialDetails = (props) => {
   } = props;
 
   const outlets = [];
-  channels.forEach((el) => {
-    outlets.push(
-      <li>
-        <ExternalAnchor href={`http://${el.type}.com/${el.id}`} target="_blank">
-          {mediaIcons[el.type]}
-        </ExternalAnchor>
-      </li>,
-    );
-  });
+  if(channels){
+    channels.forEach((el) => {
+      outlets.push(
+        <li>
+          <ExternalAnchor href={`http://${el.type}.com/${el.id}`} target="_blank">
+            {mediaIcons[el.type]}
+          </ExternalAnchor>
+        </li>,
+      );
+    });
+  }
   return (
     <CardWrapper>
       <InfoWrapper>
