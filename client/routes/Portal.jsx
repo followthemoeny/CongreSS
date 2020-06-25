@@ -74,7 +74,6 @@ const Portal = (props) => {
         props.history.push('/officials');
       })
       .catch((err) => {
-        console.log(err);
         setTimeout(() => {
           setSearching("Sorry, that address doesn't seem to be valid.");
         }, 500);
@@ -96,7 +95,9 @@ const Portal = (props) => {
         {searching === true ? (
           <WaveLoading size="large" color="#0052a5" />
         ) : (
-          <SubmitButton type="submit">Search for my Representatives</SubmitButton>
+          <SubmitButton type="submit">
+            Search for my Representatives
+          </SubmitButton>
         )}
       </StyledForm>
     </div>
