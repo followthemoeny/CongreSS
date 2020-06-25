@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { device } from '../components/style/device';
 import Logo from '../components/Logo.jsx';
 import Session from '../Session.js';
+import { WaveLoading } from 'react-loadingg';
 
 const StyledForm = styled.form`
   display: flex;
@@ -56,12 +57,18 @@ const Portal = (props) => {
     setSearching(true);
     Session.initialize(address)
       .then((data) => {
+        // setTimeout(() => {
+        //   setSearching(false);
+        //   props.history.push('/officials');
+        // }, 650);
         setSearching(false);
         props.history.push('/officials');
       })
       .catch((err) => {
         console.log(err);
-        setSearching("Sorry, that address doesn't seem to be valid.");
+        setTimeout(() => {
+          setSearching("Sorry, that address doesn't seem to be valid.");
+        }, 500);
       });
   };
 
@@ -70,14 +77,18 @@ const Portal = (props) => {
       <Logo />
       <StyledForm onSubmit={search}>
         <div>{typeof searching === 'string' ? searching : null}</div>
-        <SearchInput
-          name="address"
-          type="text"
-          placeholder="123 Main St, NY, NY, 10025"
-        ></SearchInput>
-        <SubmitButton type="submit">
-          {searching === true ? '...' : 'Search for my Representatives'}
-        </SubmitButton>
+        {searching !== true && (
+          <SearchInput
+            name="address"
+            type="text"
+            placeholder="123 Main St, NY, NY, 10025"
+          ></SearchInput>
+        )}
+        {searching === true ? (
+          <WaveLoading size="large" color="#0052a5" />
+        ) : (
+          <SubmitButton type="submit">Search for my Representatives</SubmitButton>
+        )}
       </StyledForm>
     </div>
   );
