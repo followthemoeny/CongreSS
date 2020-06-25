@@ -102,26 +102,16 @@ const Grid = (props) => {
   }
 
   const officials = data.officials;
-  const state = access(data).normalizedInput.state("");
+  const state = access(data).normalizedInput.state('');
 
   if (!officials || !officials.length) {
     return <h1>An error occurred.</h1>;
   }
 
   if (id !== undefined) {
-<<<<<<< HEAD
-    return <Official {...officials[id]} key={`official${id}`} id={id} details={true} />;
-=======
     return (
-      <Official
-        {...officials[id]}
-        key={`official${id}`}
-        id={id}
-        details={true}
-        state={state}
-      />
+      <Official {...officials[id]} key={`official${id}`} id={id} details={true} state={state} />
     );
->>>>>>> 90dd4a100b2a54c46ebf2649f867f22daa495161
   }
 
   const children = officials
