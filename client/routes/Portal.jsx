@@ -5,6 +5,7 @@ import { device } from '../components/style/device';
 import Logo from '../components/Logo.jsx';
 import Session from '../Session.js';
 import { WaveLoading } from 'react-loadingg';
+import colors from '../components/style/colors';
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,7 +24,7 @@ const SearchInput = styled.input`
   border: none;
   margin-top: 3vh;
   &:focus {
-    border: 1px solid #0052a5;
+    border: 1px solid ${colors.blue};
     padding: 10px 10px 8px 26px;
   }
 `;
@@ -34,14 +35,14 @@ const SubmitButton = styled.button`
   box-sizing: content-box;
   margin-top: 10px;
   padding: 20px 18px 20px 18px;
-  background-color: #0052a5;
+  background-color: ${colors.blue};
   color: white;
   font-size: 1.1em;
   font-weight: bold;
   border-radius: 10px;
   border: none;
   &:hover {
-    background-color: #0052bd;
+    background-color: ${colors.blue};
   }
   &:active {
     box-shadow: inset 0px 0px 20px 0px #005276;

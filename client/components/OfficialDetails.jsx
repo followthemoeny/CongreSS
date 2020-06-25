@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
+import colors from './style/colors';
 import Finances from '../components/Finances.jsx';
 import img from '../assets/noImage.png';
 
@@ -126,7 +127,7 @@ const MoreInfoButton = styled.button`
   font-weight: bold;
   border: none;
   border-radius: ${(props) => (props.rounded ? '0 0 10px 10px;' : '10px;')}
-  background-color: #0052a5;
+  background-color: ${colors.blue};
   color: white;
 `;
 
@@ -150,7 +151,7 @@ const ContactWrapper = styled.div`
 `;
 
 const OfficialContact = styled.a`
-  background-color: #e0162b;
+  background-color: ${colors.red};
   border-radius: 10px;
   padding: 0.25em 1em 0.25em 1em;
   text-decoration: none;
@@ -181,7 +182,6 @@ ExternalAnchor.displayName = 'ExternalAnchor';
 
 const IdSpan = styled.span`
   margin-left: 1em;
-  font-family: -apple-system;
   font-weight: bold;
 `;
 
@@ -206,17 +206,21 @@ const OfficialDetails = (props) => {
   const outlets = [];
 
   if (channels) {
+    const track = {};
     channels.forEach((el, index) => {
-      outlets.push(
-        <li key={`${el.type}${index}`}>
-          <ExternalAnchor
-            href={`http://${el.type}.com/${el.id}`}
-            target="_blank"
-          >
-            {mediaIcons[el.type]}
-          </ExternalAnchor>
-        </li>,
-      );
+      if (!track[el.type]) {
+        track[el.type] = true;
+        outlets.push(
+          <li key={`${el.type}${index}`}>
+            <ExternalAnchor
+              href={`http://${el.type}.com/${el.id}`}
+              target="_blank"
+            >
+              {mediaIcons[el.type]}
+            </ExternalAnchor>
+          </li>,
+        );
+      }
     });
   }
   return (
