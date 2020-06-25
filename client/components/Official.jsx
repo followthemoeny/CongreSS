@@ -74,30 +74,8 @@ const Official = (props) => {
   console.log('offical data', props);
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
-<<<<<<< HEAD
-  const address = access(props).address[0]({});
-  const { name, party, photoUrl, position, officialId } = props;
-
-  const details =
-    officialId !== undefined ? (
-      <Link to={`/officials/${officialId}`}>
-        <MoreInfoButton rounded={photoUrl}>More Detail</MoreInfoButton>
-      </Link>
-    ) : (
-      <>
-        <div>
-          <b>address:</b> {address.line1}
-        </div>
-        <div>
-          <b>phone:</b> {phoneNumber}
-        </div>
-        <Finances name={name} state={props.state} />
-      </>
-    );
-=======
   const address = access(props).address[0].line1(null);
   const { name, party, photoUrl, position, details } = props;
->>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
 
   return (
     <CardWrapper>
@@ -112,16 +90,12 @@ const Official = (props) => {
             }}
           />
         ) : null}
-<<<<<<< HEAD
-        <div>{details}</div>
-=======
         <div>
           <Link to={`/officials/${props.officialId}`}>
             <MoreInfoButton rounded={photoUrl}>More Details </MoreInfoButton>
           </Link>
           {details}
         </div>
->>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
       </InfoWrapper>
     </CardWrapper>
   );
