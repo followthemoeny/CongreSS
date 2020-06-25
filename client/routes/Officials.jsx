@@ -15,6 +15,7 @@ import Logo from '../components/Logo.jsx';
 import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
 import { WaveLoading } from 'react-loadingg';
+import colors from '../components/style/colors';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -42,13 +43,13 @@ const ElectionsButton = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  background-color: #e0162b;
+  background-color: ${colors.red};
   color: white;
   &:active {
     box-shadow: inset 0px 0px 20px 0px #005276;
   }
   &:hover {
-    background-color: #0052bd;
+    background-color: ${colors.hoverBlue};
   }
 `;
 ElectionsButton.displayName = 'ElectionsButton';
@@ -89,10 +90,9 @@ const Grid = (props) => {
   const OfficialsHeader = styled.h2`
     display: flex;
     justify-content: center;
-    color: #00100b;
+    color: ${colors.black};
     font-size: 2.2em;
     margin-bottom: 0px;
-    font-family: -apple-system;
   `;
   OfficialsHeader.displayName = 'OfficialsHeader';
 
@@ -102,7 +102,6 @@ const Grid = (props) => {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    font-family: -apple-system;
     @media ${device.laptop} {
       flex-direction: row;
       justify-content: center;
