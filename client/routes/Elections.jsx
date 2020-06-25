@@ -99,9 +99,7 @@ const Elections = (props) => {
     }
   `;
 
-  const children = elections.map((props, i) => (
-    <Election key={`election${i}`} {...props} />
-  ));
+  const children = elections.map((props, i) => <Election key={`election${i}`} {...props} />);
 
   return (
     <div>

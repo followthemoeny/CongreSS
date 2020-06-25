@@ -13,7 +13,7 @@ const Contest = (props) => {
       <Candidate {...data} key={`candidate${i}`} state={props.state} />
     ))
   ) : (
-    <div>No candidate information available.</div>
+    <div className = "NoCand">No candidate information available.</div>
   );
 
   const ContestWrapper = styled.div`
