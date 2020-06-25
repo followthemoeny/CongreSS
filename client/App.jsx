@@ -8,6 +8,7 @@ import Session from './Session.js';
 import Portal from './routes/Portal.jsx';
 import Officials from './routes/Officials.jsx';
 import Elections from './routes/Elections.jsx';
+import NotFound from './components/NotFound.jsx';
 
 const App = () => {
   const validate = () => {
@@ -29,7 +30,7 @@ const App = () => {
           <Elections />
         </ProtectedRoute>
         <Route>
-          <h1>404 Not Found</h1>
+          <NotFound />
         </Route>
       </Switch>
     </Router>

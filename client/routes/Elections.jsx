@@ -5,6 +5,7 @@ import Session from '../Session.js';
 import Election from '../components/Election.jsx';
 import Logo from '../components/Logo.jsx';
 import { device } from '../components/style/device';
+import { WaveLoading } from 'react-loadingg';
 
 const ElectionLink = (props) => {
   const ButtonsWrapepr = styled.div`
@@ -27,7 +28,7 @@ const ElectionLink = (props) => {
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    background-color: red;
+    background-color: #e0162b;
     color: white;
   `;
   const [elections, setElections] = useState(null);
@@ -63,12 +64,16 @@ const Elections = (props) => {
 
   useEffect(() => {
     Session.getElections()
-      .then((data) => setElections(data))
+      .then((data) =>
+        setTimeout(() => {
+          setElections(data);
+        }, 650)
+      )
       .catch((err) => setElections(undefined));
   }, []);
 
   if (elections === null) {
-    return <h1>Loading...</h1>;
+    return <WaveLoading size="large" color="#0052a5" />;
   }
 
   if (!elections.length) {
