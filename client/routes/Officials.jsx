@@ -81,6 +81,7 @@ const Grid = (props) => {
     margin-bottom: 0px;
     font-family: -apple-system;
   `;
+
   const OfficialsWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -115,7 +116,13 @@ const Grid = (props) => {
 
   if (id !== undefined) {
     return (
-      <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
+      <OfficialsWrapper>
+        <OfficialDetails
+          {...officials[id]}
+          key={`official${id}`}
+          state={state}
+        />
+      </OfficialsWrapper>
     );
   }
 
