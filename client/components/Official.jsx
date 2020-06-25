@@ -23,6 +23,7 @@ const CardWrapper = styled.div`
     min-width: 15vw;
   }
 `;
+
 CardWrapper.displayName = 'CardWrapper';
 
 const InfoWrapper = styled.div`
