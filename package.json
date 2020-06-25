@@ -9,7 +9,7 @@
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
     "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/index.js\"",
     "start": "NODE_ENV=production node server/index.js",
-    "build": "cross-env NODE_ENV=production webpack ",
+    "build": "cross-env NODE_ENV=production webpack",
     "dev": "nodemon server/index.js & cross-env NODE_ENV=development webpack-dev-server --open"
   },
   "repository": {
@@ -31,16 +31,16 @@
   },
   "dependencies": {
     "chai": "^4.2.0",
+    "chart.js": "^2.9.3",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "jest-styled-components": "^7.0.2",
     "node-fetch": "^2.6.0",
     "path": "^0.12.7",
-    "plotly.js": "^1.54.5",
     "querystring": "^0.2.0",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
-    "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.1"
   },
