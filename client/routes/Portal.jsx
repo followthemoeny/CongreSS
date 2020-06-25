@@ -75,7 +75,7 @@ const Portal = (props) => {
   return (
     <div>
       <Logo />
-      <StyledForm onSubmit={search}>
+      <StyledForm onSubmit={search} autoComplete={'off'}>
         <div>{typeof searching === 'string' ? searching : null}</div>
         {searching !== true && (
           <SearchInput
