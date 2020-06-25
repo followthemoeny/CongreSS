@@ -61,5 +61,19 @@ describe('Route Integration', () => {
           .expect(200);
       });
     });
+    describe('GET api/finances', () => {
+      it('responds with a 200 status and a json object if successful', () => {
+      return request(server)
+      .get('/api/finances?name=Lynda Bennett&state=NC')
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+      })
+
+      it('responds with a 404 error when it cannot find anything about the candidate', () => {
+        return request(server)
+        .get('/api/finances?name=Vermin Supreme&state=deep')
+        .expect(404);
+      })
+    })
   });
 });
