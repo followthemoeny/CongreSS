@@ -15,36 +15,36 @@ import Logo from '../components/Logo.jsx';
 import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
 
-const ElectionLink = ({ details }) => {
-  const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 10px;
+`;
+ButtonWrapper.displayName = 'ButtonsWrapper';
+
+const LinkWrapper = styled.div`
+  a {
     display: flex;
-    justify-content: space-between;
-    margin: 15px 10px;
-  `;
-  ButtonWrapper.displayName = 'ButtonsWrapper';
+    justify-content: flex-end;
+    color: blue;
+    text-decoration: none;
+  }
+`;
+LinkWrapper.displayName = 'LinkWrapper';
 
-  const LinkWrapper = styled.div`
-    a {
-      display: flex;
-      justify-content: flex-end;
-      color: blue;
-      text-decoration: none;
-    }
-  `;
-  LinkWrapper.displayName = 'LinkWrapper';
+const ElectionsButton = styled.button`
+  width: 100px;
+  padding: 5px 0px 5px 0px;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+`;
+ElectionsButton.displayName = 'ElectionsButton';
 
-  const ElectionsButton = styled.button`
-    width: 100px;
-    padding: 5px 0px 5px 0px;
-    font-size: 1em;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    background-color: red;
-    color: white;
-  `;
-  ElectionsButton.displayName = 'ElectionsButton';
-
+const ElectionLink = ({ details }) => {
   const [elections, setElections] = useState(null);
 
   useEffect(() => {

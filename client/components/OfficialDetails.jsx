@@ -68,11 +68,34 @@ const MoreInfoButton = styled.button`
 `;
 
 const Party = styled.p`
-  padding: 0px 10px;
-  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  margin: 0px 15px;
   font-weight: bold;
 `;
+
 Party.displayName = 'Party';
+
+const ContactWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 1em;
+  font-family: Arial;
+  font-weight: bold;
+  padding-top: 5px;
+`;
+
+const OfficialContact = styled.a`
+  background-color: #e0162b;
+  border-radius: 10px;
+  padding: 0.25em 1em 0.25em 1em;
+  text-decoration: none;
+  color: white;
+  border: 1px solid red;
+  width: 100px;
+`;
+
 const Media = styled.div``;
 Media.displayName = 'Media';
 
@@ -81,7 +104,18 @@ const OfficialDetails = (props) => {
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
-  const { name, party, photoUrl, position, details, state, channels } = props;
+  const {
+    name,
+    party,
+    photoUrl,
+    position,
+    details,
+    state,
+    channels,
+    urls,
+    emails,
+    phones,
+  } = props;
 
   return (
     <CardWrapper>
@@ -98,6 +132,25 @@ const OfficialDetails = (props) => {
             }}
           />
         ) : null}
+        <ContactWrapper>
+          <span>
+            {emails ? (
+              <OfficialContact href={'mailto:' + emails[0]}>
+                Email
+              </OfficialContact>
+            ) : null}
+          </span>
+          <span>
+            {phones ? (
+              <OfficialContact href={'tel:' + phones[0]}>Call</OfficialContact>
+            ) : null}
+          </span>
+          <span>
+            {urls ? (
+              <OfficialContact href={urls[0]}>Website</OfficialContact>
+            ) : null}
+          </span>
+        </ContactWrapper>
         <Media></Media>
         <Finances name={name} state={state} />
       </InfoWrapper>

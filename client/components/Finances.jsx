@@ -3,10 +3,11 @@ import Session from '../Session.js';
 import { Bar } from 'react-chartjs-2';
 import styled from 'styled-components';
 
+const NoFinances = styled.h1`
+  text-align: center;
+`;
+
 const Finances = (props) => {
-  const NoFinances = styled.h1`
-    text-align: center;
-  `;
   const [data, setData] = useState(null);
 
   useEffect(() => {
