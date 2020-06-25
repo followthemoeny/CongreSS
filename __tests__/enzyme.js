@@ -36,6 +36,7 @@ describe('React unit tests', ()=>{
 
   describe('Official', () => {
     let wrapper
+    let noPic
     const props = {
         "name": "Donald J. Trump",
         "address": [
@@ -74,12 +75,24 @@ describe('React unit tests', ()=>{
 
     beforeAll(() => {
       wrapper = shallow(<Official {...props}/>);
+      noPic = shallow(<Official />)
     })
     it('Official has styled components Name and Position and their texts are from the props', () => {
-      //console.log(wrapper.debug())
+     // console.log(wrapper.debug())
       expect(wrapper.find('Name').text()).toEqual(props.name)
       expect(wrapper.find('Position').text()).toEqual(props.position)
     })
+
+    it('properly omits the photo on an error', () => {
+      console.log(noPic.debug())
+      expect(noPic.find('Picture')).toHaveLength(0)
+    })
+
+    it('Changes button shape based on picture presence', () => {
+      expect(wrapper.find('MoreInfoButton')).toHaveStyleRule('border-radius','0 0 10px 10px')
+      expect(noPic.find('MoreInfoButton')).toHaveStyleRule('border-radius','10px')
+    })
+
 
 
   })
@@ -187,6 +200,8 @@ describe('React unit tests', ()=>{
     })
 
   })
+
+
 
 
   // xdescribe('test component', () => {
