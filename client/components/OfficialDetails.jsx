@@ -67,17 +67,28 @@ const MoreInfoButton = styled.button`
   color: white;
 `;
 
+const Party = styled.p`
+  padding: 0px 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+`;
+Party.displayName = 'Party';
+const Media = styled.div``;
+Media.displayName = 'Media';
+
 const OfficialDetails = (props) => {
   console.log('offical data', props);
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
-  const { name, party, photoUrl, position, details, state } = props;
+  const { name, party, photoUrl, position, details, state, channels } = props;
+
   return (
     <CardWrapper>
       <InfoWrapper>
         <Name>{name}</Name>
         <Position>{position}</Position>
+        <Party>{party}</Party>
         {photoUrl ? (
           <Picture
             src={photoUrl}
@@ -87,6 +98,7 @@ const OfficialDetails = (props) => {
             }}
           />
         ) : null}
+        <Media></Media>
         <Finances name={name} state={state} />
       </InfoWrapper>
     </CardWrapper>
