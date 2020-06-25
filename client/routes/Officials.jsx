@@ -16,12 +16,12 @@ import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
 
 const ElectionLink = ({ details }) => {
-  const ButtonsWrapepr = styled.div`
+  const ButtonWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 15px 10px;
   `;
-  ButtonsWrapepr.displayName = 'ButtonsWrapper';
+  ButtonWrapper.displayName = 'ButtonsWrapper';
 
   const LinkWrapper = styled.div`
     a {
@@ -59,7 +59,7 @@ const ElectionLink = ({ details }) => {
   };
 
   return (
-    <ButtonsWrapepr>
+    <ButtonWrapper>
       <LinkWrapper>
         <Link to={details ? '/officials' : '/'}>
           <ElectionsButton>Back</ElectionsButton>
@@ -72,7 +72,7 @@ const ElectionLink = ({ details }) => {
           </Link>
         </LinkWrapper>
       ) : null}
-    </ButtonsWrapepr>
+    </ButtonWrapper>
   );
 };
 
