@@ -64,7 +64,6 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
 `;
 
 const Picture = styled.img`
@@ -166,14 +165,18 @@ const OfficialDetails = (props) => {
   const outlets = [];
 
   if (channels) {
+    const track = {};
     channels.forEach((el, index) => {
-      outlets.push(
-        <li key={`${el.type}${index}`}>
-          <ExternalAnchor href={`http://${el.type}.com/${el.id}`} target="_blank">
-            {mediaIcons[el.type]}
-          </ExternalAnchor>
-        </li>
-      );
+      if (!track[el.type]) {
+        track[el.type] = true;
+        outlets.push(
+          <li key={`${el.type}${index}`}>
+            <ExternalAnchor href={`http://${el.type}.com/${el.id}`} target="_blank">
+              {mediaIcons[el.type]}
+            </ExternalAnchor>
+          </li>
+        );
+      }
     });
   }
   return (
