@@ -14,12 +14,14 @@ import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
 import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
+import { WaveLoading } from 'react-loadingg';
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 15px 10px;
 `;
+
 ButtonWrapper.displayName = 'ButtonsWrapper';
 
 const LinkWrapper = styled.div`
@@ -39,7 +41,7 @@ const ElectionsButton = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  background-color: red;
+  background-color: #e0162b;
   color: white;
 `;
 ElectionsButton.displayName = 'ElectionsButton';
@@ -107,12 +109,16 @@ const Grid = (props) => {
 
   useEffect(() => {
     Session.getOfficals()
-      .then((data) => setData(data))
+      .then((data) =>
+        setTimeout(() => {
+          setData(data);
+        }, 650),
+      )
       .catch((err) => setData(undefined));
   }, []);
 
   if (data === null) {
-    return <h1>Loading...</h1>;
+    return <WaveLoading size="large" color="#0052a5" />;
   }
 
   const officials = data.officials;

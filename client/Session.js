@@ -58,7 +58,7 @@ const Session = {
       return Promise.resolve(finances[key]);
     }
 
-    return httpGet('/api/finances', { name, state })
+    return httpGet('/api/finances', { name })
       .then((data) => {
         finances[key] = data;
         value(Session.FINANCES, finances);
