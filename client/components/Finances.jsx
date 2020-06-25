@@ -27,8 +27,7 @@ const Finances = (props) => {
   }, []);
 
   if (data === null) {
-    console.log('LOADING HERE');
-    return <WaveLoading size="large" color="#0052a5" />;
+    return <WaveLoading style={{}} size="large" color="#0052a5" />;
   }
   if (!data) {
     return <NoFinances>No financial information available for this candidate.</NoFinances>;
@@ -74,69 +73,75 @@ const Finances = (props) => {
       legend: {
         display: true,
         position: 'bottom',
-        align: 'start'
+        align: 'start',
       },
       scales: {
-        yAxes: [{
-          ticks: {
-            callback: function(value, index, values) {
-                return '$' + (value/1000) + 'k';
-            }
-          }
-        }]
-      }  
+        yAxes: [
+          {
+            ticks: {
+              callback: function (value, index, values) {
+                return '$' + value / 1000 + 'k';
+              },
+            },
+          },
+        ],
+      },
     },
   };
-  const committeeData = committee ? {
-    height: '300px',
-    maintainAspectRatio: false,
-    data: {
-      datasets: [
-        {
-          label: 'individual contributions',
-          backgroundColor: 'rgba(75,192,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
-          data: [committee.individual_contributions],
+  const committeeData = committee
+    ? {
+        height: '300px',
+        maintainAspectRatio: false,
+        data: {
+          datasets: [
+            {
+              label: 'individual contributions',
+              backgroundColor: 'rgba(75,192,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: [committee.individual_contributions],
+            },
+            {
+              label: 'transfers from affiliated committees',
+              backgroundColor: 'rgba(75,0,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: [committee.transfers_from_affiliated_committee],
+            },
+            {
+              label: 'operating expenditures',
+              backgroundColor: 'rgba(75,192,0,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: [committee.operating_expenditures],
+            },
+          ],
         },
-        {
-          label: 'transfers from affiliated committees',
-          backgroundColor: 'rgba(75,0,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
-          data: [committee.transfers_from_affiliated_committee],
+        options: {
+          title: {
+            display: true,
+            text: committee.committee_name,
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'start',
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  callback: function (value, index, values) {
+                    return '$' + value / 1000 + 'k';
+                  },
+                },
+              },
+            ],
+          },
         },
-        {
-          label: 'operating expenditures',
-          backgroundColor: 'rgba(75,192,0,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
-          data: [committee.operating_expenditures],
-        },
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: committee.committee_name,
-        fontSize: 20,
-      },
-      legend: {
-        display: true,
-        position: 'bottom',
-        align: 'start'
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            callback: function(value, index, values) {
-                return '$' + (value/1000) + 'k';
-            }
-          }
-        }]
-      }  
-    },
-  } : null;
+      }
+    : null;
 
   return (
     <div>
