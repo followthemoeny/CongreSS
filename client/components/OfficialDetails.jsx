@@ -124,6 +124,9 @@ const Media = styled.ul`
 Media.displayName = 'Media';
 
 const ExternalAnchor = styled.a`
+  &:hover {
+    opacity: 80%;
+  }
   text-decoration: none;
   display: flex;
   align-items: center;

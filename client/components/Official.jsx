@@ -61,6 +61,7 @@ const Position = styled.h3`
 Position.displayName = 'Position';
 
 const MoreInfoButton = styled.button`
+  outline: none;
   width: 300px;
   padding: 20px 18px 20px 18px;
   margin-top: 0px;
@@ -70,6 +71,12 @@ const MoreInfoButton = styled.button`
   border-radius: 0 0 10px 10px;
   background-color: #0052a5;
   color: white;
+  &:hover {
+    background-color: #0052bd;
+  }
+  &:active {
+    box-shadow: inset 0px 0px 20px 0px #005276;
+  }
 `;
 MoreInfoButton.displayName = 'MoreInfoButton';
 

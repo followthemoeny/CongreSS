@@ -41,10 +41,10 @@ const SubmitButton = styled.button`
   border-radius: 10px;
   border: none;
   &:hover {
-    background-color: #0052e2;
+    background-color: #0052bd;
   }
   &:active {
-    box-shadow: inset 0px 0px 18px 0px #00527c;
+    box-shadow: inset 0px 0px 20px 0px #005276;
   }
 `;
 
