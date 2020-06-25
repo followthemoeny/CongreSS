@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  withRouter,
-  useParams,
-} from 'react-router-dom';
+import { Switch, Route, Link, useRouteMatch, withRouter, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../components/style/device';
 import Session from '../Session.js';
@@ -14,6 +7,7 @@ import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
 import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
+import { WaveLoading } from 'react-loadingg';
 
 const ElectionLink = ({ details }) => {
   const ButtonsWrapepr = styled.div`
@@ -40,7 +34,7 @@ const ElectionLink = ({ details }) => {
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    background-color: red;
+    background-color: #e0162b;
     color: white;
   `;
   ElectionsButton.displayName = 'ElectionsButton';
@@ -107,12 +101,16 @@ const Grid = (props) => {
 
   useEffect(() => {
     Session.getOfficals()
-      .then((data) => setData(data))
+      .then((data) =>
+        setTimeout(() => {
+          setData(data);
+        }, 650)
+      )
       .catch((err) => setData(undefined));
   }, []);
 
   if (data === null) {
-    return <h1>Loading...</h1>;
+    return <WaveLoading size="large" color="#0052a5" />;
   }
 
   const officials = data.officials;
@@ -125,19 +123,13 @@ const Grid = (props) => {
   if (id !== undefined) {
     return (
       <OfficialsWrapper>
-        <OfficialDetails
-          {...officials[id]}
-          key={`official${id}`}
-          state={state}
-        />
+        <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
       </OfficialsWrapper>
     );
   }
 
   const children = officials
-    .map((props, id) => (
-      <Official {...props} key={`official${id}`} officialId={id} />
-    ))
+    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
     .reverse();
 
   return (

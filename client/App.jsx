@@ -29,7 +29,23 @@ const App = () => {
           <Elections />
         </ProtectedRoute>
         <Route>
-          <h1>404 Not Found</h1>
+          <div
+            style={{
+              backgroundColor: 'red',
+            }}
+          >
+            {' '}
+            <h1
+              style={{
+                fontFamily: "'Rubik', sans-serif",
+                fontSize: '2.5em',
+                color: 'white',
+                margin: '20px',
+              }}
+            >
+              404 Not Found
+            </h1>
+          </div>
         </Route>
       </Switch>
     </Router>
