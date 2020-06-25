@@ -4,7 +4,8 @@
   "description": "money shall be shown",
   "main": "index.js",
   "scripts": {
-    "test": "set \"NODE_ENV=production\" && jest",
+    "testwindows": "set \"NODE_ENV=production\" && jest",
+    "test": "NODE_ENV=production jest",
     "startwindows": "set \"NODE_ENV=production\" && node server/index.js",
     "buildwindows": "set \"NODE_ENV=production\" && webpack",
     "devwindows": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/index.js\"",

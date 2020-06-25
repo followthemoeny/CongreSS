@@ -18,9 +18,7 @@ describe('Route Integration', () => {
   describe('/api', () => {
     describe('GET api/officials', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server)
-          .get('/api/officials?address=thisaintanaddress')
-          .expect(400);
+        return request(server).get('/api/officials?address=thisaintanaddress').expect(400);
       });
 
       it('responds with a 200 status and a json object', () => {
@@ -47,9 +45,7 @@ describe('Route Integration', () => {
     });
     describe('GET api/election', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server)
-          .get('/api/election?address=thisaintanaddress')
-          .expect(400);
+        return request(server).get('/api/election?address=thisaintanaddress').expect(400);
       });
       //if this test is commented out it is because the test address has no elections nearby and has become invalidated
       xit('responds with a 200 status and a json object, note this test can become invalid over time due to database purges', () => {
@@ -68,9 +64,7 @@ describe('Route Integration', () => {
       });
 
       it('responds with a 404 error when it cannot find anything about the candidate', () => {
-        return request(server)
-          .get('/api/finances?name=Vermin Supreme&state=deep')
-          .expect(404);
+        return request(server).get('/api/finances?name=Vermin Supreme&state=deep').expect(404);
       });
     });
   });
