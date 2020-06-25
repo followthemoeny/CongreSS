@@ -47,10 +47,6 @@ const ElectionLink = ({ details }) => {
       .catch((err) => setElections(undefined));
   }, []);
 
-  if (!elections) {
-    return null;
-  }
-
   const linkTo = {
     pathname: '/elections',
     state: elections,
@@ -63,12 +59,13 @@ const ElectionLink = ({ details }) => {
           <ElectionsButton>Back</ElectionsButton>
         </Link>
       </LinkWrapper>
-
-      <LinkWrapper>
-        <Link to={linkTo}>
-          <ElectionsButton>Elections</ElectionsButton>
-        </Link>
-      </LinkWrapper>
+      {elections ? (
+        <LinkWrapper>
+          <Link to={linkTo}>
+            <ElectionsButton>Elections</ElectionsButton>
+          </Link>
+        </LinkWrapper>
+      ) : null}
     </ButtonsWrapepr>
   );
 };

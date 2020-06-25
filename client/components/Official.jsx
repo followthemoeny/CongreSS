@@ -29,7 +29,6 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
 `;
 InfoWrapper.displayName = 'InfoWrapper';
 
