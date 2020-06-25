@@ -18,7 +18,9 @@ describe('Route Integration', () => {
   describe('/api', () => {
     describe('GET api/officials', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server).get('/api/officials?address=thisaintanaddress').expect(400);
+        return request(server)
+          .get('/api/officials?address=thisaintanaddress')
+          .expect(400);
       });
 
       it('responds with a 200 status and a json object', () => {
@@ -32,15 +34,9 @@ describe('Route Integration', () => {
         return request(server)
           .get('/api/officials?address=144 2nd ave 10003')
           .expect((res) => {
-<<<<<<< HEAD
-            expect(Array.isArray(res.body)).toEqual(true);
-            res.body.forEach((official) => {
-              // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
-=======
             expect(Array.isArray(res.body.officials)).toEqual(true);
             res.body.officials.forEach((official) => {
-             // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
->>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
+              // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
               expect(official.hasOwnProperty('name')).toEqual(true);
               expect(official.hasOwnProperty('position')).toEqual(true);
               expect(official.hasOwnProperty('party')).toEqual(true);
@@ -51,10 +47,12 @@ describe('Route Integration', () => {
     });
     describe('GET api/election', () => {
       it('gracefully handles an unregistered or malformed address with a 400', () => {
-        return request(server).get('/api/election?address=thisaintanaddress').expect(400);
+        return request(server)
+          .get('/api/election?address=thisaintanaddress')
+          .expect(400);
       });
 
-      it('responds with a 200 status and a json object', () => {
+      xit('responds with a 200 status and a json object', () => {
         return request(server)
           .get('/api/election?address=144 2nd ave 10003')
           .expect('Content-Type', /application\/json/)
@@ -63,17 +61,17 @@ describe('Route Integration', () => {
     });
     describe('GET api/finances', () => {
       it('responds with a 200 status and a json object if successful', () => {
-      return request(server)
-      .get('/api/finances?name=Lynda Bennett&state=NC')
-      .expect(200)
-      .expect('Content-Type', /application\/json/);
-      })
+        return request(server)
+          .get('/api/finances?name=Lynda Bennett&state=NC')
+          .expect(200)
+          .expect('Content-Type', /application\/json/);
+      });
 
       it('responds with a 404 error when it cannot find anything about the candidate', () => {
         return request(server)
-        .get('/api/finances?name=Vermin Supreme&state=deep')
-        .expect(404);
-      })
-    })
+          .get('/api/finances?name=Vermin Supreme&state=deep')
+          .expect(404);
+      });
+    });
   });
 });

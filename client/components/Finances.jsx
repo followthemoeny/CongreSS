@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Session from '../Session.js';
 import { Bar } from 'react-chartjs-2';
+import styled from 'styled-components';
 
 const Finances = (props) => {
+  const NoFinances = styled.h1`
+    text-align: center;
+  `;
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -15,7 +19,11 @@ const Finances = (props) => {
     return <h1>Loading...</h1>;
   }
   if (!data) {
-    return <h1>No financial information available for this candidate.</h1>;
+    return (
+      <NoFinances>
+        No financial information available for this candidate.
+      </NoFinances>
+    );
   }
 
   console.log('financial data', data);
@@ -37,14 +45,14 @@ const Finances = (props) => {
         },
         {
           label: 'committee contributions',
-          backgroundColor: 'rgba(75,192,192,1)',
+          backgroundColor: 'rgba(75,0,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
           data: [other_political_committee_contributions],
         },
         {
           label: 'operating expenditures',
-          backgroundColor: 'rgba(75,192,192,1)',
+          backgroundColor: 'rgba(75,192,0,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
           data: [operating_expenditures],
@@ -65,7 +73,7 @@ const Finances = (props) => {
   };
 
   return (
-    <div style={{ border: '1px solid' }}>
+    <div>
       <Bar {...chartData} />
     </div>
   );
