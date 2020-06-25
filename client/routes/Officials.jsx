@@ -5,9 +5,10 @@ import { device } from '../components/style/device';
 import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
+import OfficialDetails from '../components/OfficialDetails.jsx';
 import { access } from '../util';
 
-const ElectionLink = (props) => {
+const ElectionLink = ({ details }) => {
   const ButtonsWrapepr = styled.div`
     display: flex;
     justify-content: space-between;
@@ -51,7 +52,7 @@ const ElectionLink = (props) => {
   return (
     <ButtonsWrapepr>
       <LinkWrapper>
-        <Link to="/">
+        <Link to={details ? '/officials' : '/'}>
           <ElectionsButton>Back</ElectionsButton>
         </Link>
       </LinkWrapper>
@@ -109,11 +110,19 @@ const Grid = (props) => {
   }
 
   if (id !== undefined) {
+<<<<<<< HEAD
     return <Official {...officials[id]} key={`official${id}`} state={state} />;
+=======
+    return (
+      <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
+    );
+>>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
   }
 
   const children = officials
-    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
+    .map((props, id) => (
+      <Official {...props} key={`official${id}`} officialId={id} />
+    ))
     .reverse();
 
   return (
@@ -140,6 +149,7 @@ const Officials = (props) => {
           <Grid officials={props.location.state} />
         </Route>
         <Route path={`${path}/:id`}>
+          <ElectionLink address={Session.address} details={true} />
           <Grid officials={props.location.state} />
         </Route>
       </Switch>

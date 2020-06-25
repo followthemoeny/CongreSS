@@ -15,6 +15,7 @@ const LogoWrapper = styled.div`
     border-radius: 0px;
   }
 `;
+LogoWrapper.displayName = 'LogoWrapper'
 
 const LogoContent = styled.span`
   font-family: 'Rubik', sans-serif;
@@ -23,6 +24,7 @@ const LogoContent = styled.span`
     font-size: 2.5em;
   }
 `;
+LogoContent.displayName = 'LogoContent'
 
 const Logo = () => {
   return (
