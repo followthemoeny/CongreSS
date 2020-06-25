@@ -18,22 +18,34 @@ const Contest = (props) => {
 
   const ContestWrapper = styled.div`
     padding: 15px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `;
-  ContestWrapper.displayName = "ContestWrapper"
+
+  const BallotTitle = styled(ContestWrapper)`
+    font-size: 1.2em;
+    padding: 0;
+  `;
+  ContestWrapper.displayName = 'ContestWrapper';
+
+  const CandidatesWrapper = styled.div`
+    font-weight: 1.4em;
+  `;
+
+  const Candidates = styled.div`
+    font-size: 1.1em;
+  `;
   return (
     <ContestWrapper>
-      <div style={{ border: '1px solid' }}>
-        <div>
-          <b>ballot title:</b> {ballotTitle}
-        </div>
-        <div>
-          <b>type:</b> {type}
-        </div>
-        <div>
-          <b>candidates:</b>
-          {children}
-        </div>
+      <BallotTitle>
+        <p>{ballotTitle}</p>
+      </BallotTitle>
+      <div>
+        <Candidates>
+          <b>Candidates:</b>
+        </Candidates>
+        {children}
       </div>
     </ContestWrapper>
   );

@@ -18,7 +18,7 @@ const Candidate = (props) => {
       min-width: 30vw;
     }
   `;
-  CardWrapper.displayName = "CardWrapper"
+  CardWrapper.displayName = 'CardWrapper';
   console.log('candidate data', props);
 
   const [showFinances, setShowFinances] = useState(false);
@@ -27,13 +27,9 @@ const Candidate = (props) => {
   const { name, party, state } = props;
 
   return (
-    <div style={{ border: '1px solid' }}>
-      <div>
-        <b>name:</b> {name}
-      </div>
-      <div>
-        <b>party:</b> {party}
-      </div>
+    <div>
+      <div>{name}</div>
+      <div>{party}</div>
       <div>
         <button onClick={() => setShowFinances(!showFinances)}>
           {showFinances ? 'hide' : 'show'} finances
