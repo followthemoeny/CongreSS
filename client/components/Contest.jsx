@@ -20,6 +20,7 @@ const Contest = (props) => {
     padding: 15px;
     background-color: white;
   `;
+  ContestWrapper.displayName = "ContestWrapper"
   return (
     <ContestWrapper>
       <div style={{ border: '1px solid' }}>

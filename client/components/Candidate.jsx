@@ -18,6 +18,8 @@ const Candidate = (props) => {
       min-width: 30vw;
     }
   `;
+  CardWrapper.displayName = "CardWrapper"
+  console.log('candidate data', props);
 
   const [showFinances, setShowFinances] = useState(false);
 

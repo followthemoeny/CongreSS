@@ -25,6 +25,7 @@ const Election = (props) => {
     justify-content: center;
     font-size: 2em;
   `;
+  ElectionHeader.displayName = 'ElectionHeader'
   return (
     <div>
       <div>

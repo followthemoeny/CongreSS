@@ -28,12 +28,12 @@ describe('Route Integration', () => {
           .expect(200);
       });
 
-      it('response is an array of objects with minimum keys name, addess,party, position and photoURL', () => {
+      it('response is an object with an array of objects key "officials" with minimum keys name, addess,party, position and photoURL', () => {
         return request(server)
           .get('/api/officials?address=144 2nd ave 10003')
           .expect((res) => {
-            expect(Array.isArray(res.body)).toEqual(true);
-            res.body.forEach((official) => {
+            expect(Array.isArray(res.body.officials)).toEqual(true);
+            res.body.officials.forEach((official) => {
              // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
               expect(official.hasOwnProperty('name')).toEqual(true);
               expect(official.hasOwnProperty('position')).toEqual(true);

@@ -2,3 +2,4 @@ node_modules
 build
 secret.js
 bundle.js
+TestComponent.jsx
