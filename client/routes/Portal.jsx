@@ -42,10 +42,10 @@ const SubmitButton = styled.button`
   border-radius: 10px;
   border: none;
   &:hover {
-    background-color: ${colors.blue};
+    background-color: ${colors.hoverBlue};
   }
   &:active {
-    box-shadow: inset 0px 0px 20px 0px #005276;
+    box-shadow: inset 0px 0px 20px 0px ${colors.activeBlue};
   }
 `;
 
@@ -95,9 +95,7 @@ const Portal = (props) => {
         {searching === true ? (
           <WaveLoading size="large" color="#0052a5" />
         ) : (
-          <SubmitButton type="submit">
-            Search for my Representatives
-          </SubmitButton>
+          <SubmitButton type="submit">Search for my Representatives</SubmitButton>
         )}
       </StyledForm>
     </div>
