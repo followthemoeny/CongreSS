@@ -39,7 +39,7 @@ const ElectionsButton = styled.button`
 `;
 ElectionsButton.displayName = 'ElectionsButton';
 
-const ElectionLink = ({ details }) => {
+const ElectionLink = withRouter((props) => {
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
@@ -56,9 +56,7 @@ const ElectionLink = ({ details }) => {
   return (
     <ButtonWrapper>
       <LinkWrapper>
-        <Link to={details ? '/officials' : '/'}>
-          <ElectionsButton>Back</ElectionsButton>
-        </Link>
+        <ElectionsButton onClick={props.history.goBack}>Back</ElectionsButton>
       </LinkWrapper>
       {elections ? (
         <LinkWrapper>
@@ -69,7 +67,7 @@ const ElectionLink = ({ details }) => {
       ) : null}
     </ButtonWrapper>
   );
-};
+});
 
 const Grid = (props) => {
   let { id } = useParams();

@@ -37,29 +37,23 @@ const Finances = (props) => {
   const committee = access(data).committees[0](null);
 
   const personalData = {
-    height: '300px',
-    maintainAspectRatio: false,
+    height: 300,
+    maintainAspectRatio: false, 
     data: {
       datasets: [
         {
           label: 'individual contributions',
           backgroundColor: 'rgba(75,192,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
           data: [personal.individual_contributions],
         },
         {
           label: 'committee contributions',
           backgroundColor: 'rgba(75,0,192,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
           data: [personal.other_political_committee_contributions],
         },
         {
           label: 'operating expenditures',
           backgroundColor: 'rgba(75,192,0,1)',
-          borderColor: 'rgba(0,0,0,1)',
-          borderWidth: 2,
           data: [personal.operating_expenditures],
         },
       ],
@@ -90,29 +84,23 @@ const Finances = (props) => {
   };
   const committeeData = committee
     ? {
-        height: '300px',
+        height: 300,
         maintainAspectRatio: false,
         data: {
           datasets: [
             {
               label: 'individual contributions',
               backgroundColor: 'rgba(75,192,192,1)',
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 2,
               data: [committee.individual_contributions],
             },
             {
               label: 'transfers from affiliated committees',
               backgroundColor: 'rgba(75,0,192,1)',
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 2,
               data: [committee.transfers_from_affiliated_committee],
             },
             {
               label: 'operating expenditures',
               backgroundColor: 'rgba(75,192,0,1)',
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 2,
               data: [committee.operating_expenditures],
             },
           ],
@@ -145,8 +133,12 @@ const Finances = (props) => {
 
   return (
     <div>
-      <Bar {...personalData} />
-      {committeeData ? <Bar {...committeeData} /> : null}
+      <div style={{ backgroundColor: 'ivory', marginBottom: '10px', borderRadius: '10px' }}>
+        <Bar {...personalData} />
+      </div>
+      <div style={{ backgroundColor: 'ivory', marginBottom: '10px', borderRadius: '10px' }}>
+        {committeeData ? <Bar {...committeeData} /> : null}
+      </div>
     </div>
   );
 };
