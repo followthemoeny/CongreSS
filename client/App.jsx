@@ -8,6 +8,7 @@ import Session from './Session.js';
 import Portal from './routes/Portal.jsx';
 import Officials from './routes/Officials.jsx';
 import Elections from './routes/Elections.jsx';
+import NotFound from './components/NotFound.jsx';
 
 const App = () => {
   const validate = () => {
@@ -29,23 +30,7 @@ const App = () => {
           <Elections />
         </ProtectedRoute>
         <Route>
-          <div
-            style={{
-              backgroundColor: 'red',
-            }}
-          >
-            {' '}
-            <h1
-              style={{
-                fontFamily: "'Rubik', sans-serif",
-                fontSize: '2.5em',
-                color: 'white',
-                margin: '20px',
-              }}
-            >
-              404 Not Found
-            </h1>
-          </div>
+          <NotFound />
         </Route>
       </Switch>
     </Router>
