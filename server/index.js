@@ -15,7 +15,6 @@ app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
-  // serve index.html on the route '/'
   app.use('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
   });

@@ -35,6 +35,7 @@ const LinkWrapper = styled.div`
 LinkWrapper.displayName = 'LinkWrapper';
 
 const ElectionsButton = styled.button`
+  outline: none;
   width: 100px;
   padding: 5px 0px 5px 0px;
   font-size: 1em;
@@ -43,6 +44,12 @@ const ElectionsButton = styled.button`
   border-radius: 10px;
   background-color: #e0162b;
   color: white;
+  &:active {
+    box-shadow: inset 0px 0px 20px 0px #005276;
+  }
+  &:hover {
+    background-color: #0052bd;
+  }
 `;
 ElectionsButton.displayName = 'ElectionsButton';
 
