@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import { access } from '../util';
 import { WaveLoading } from 'react-loadingg';
 
+const NoFinances = styled.h1`
+  text-align: center;
+`;
+
 const Finances = (props) => {
-  const NoFinances = styled.h1`
-    text-align: center;
-  `;
   const [data, setData] = useState(null);
 
   useEffect(() => {
