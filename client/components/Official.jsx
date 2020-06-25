@@ -65,7 +65,7 @@ const MoreInfoButton = styled.button`
   font-size: 1.1em;
   font-weight: bold;
   border: none;
-  border-radius: ${(props) => (props.rounded ? '0 0 10px 10px;' : '10px;')}
+  border-radius: 0 0 10px 10px;
   background-color: #0052a5;
   color: white;
 `;
@@ -83,17 +83,15 @@ const Official = (props) => {
       <InfoWrapper>
         <Name>{name}</Name>
         <Position>{position}</Position>
-        {photoUrl ? (
-          <Picture
-            src={photoUrl || '../assets/noImage.png'}
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
-          />
-        ) : null}
+        <Picture
+          src={photoUrl || 'client/assets/noImage.png'}
+          onError={(e) => {
+            e.target.src = 'client/assets/noImage.png';
+          }}
+        />
         <div>
           <Link to={`/officials/${props.officialId}`}>
-            <MoreInfoButton rounded={photoUrl}>More Details </MoreInfoButton>
+            <MoreInfoButton>More Details </MoreInfoButton>
           </Link>
           {details}
         </div>
