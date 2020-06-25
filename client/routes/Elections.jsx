@@ -46,7 +46,7 @@ const ElectionLink = (props) => {
   const linkTo = {
     pathname: '/elections',
     state: elections,
-  };
+  }; 
 
   return (
     <ButtonsWrapepr>
