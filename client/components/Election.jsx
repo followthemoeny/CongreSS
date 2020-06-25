@@ -12,11 +12,9 @@ const Election = (props) => {
   const { electionDay } = election;
 
   const children = contests.length ? (
-    contests.map((data, i) => (
-      <Contest {...data} key={`contest${i}`} state={address.state} />
-    ))
+    contests.map((data, i) => <Contest {...data} key={`contest${i}`} state={address.state} />)
   ) : (
-    <div className = 'NoContest'>No available contest information.</div>
+    <div className="NoContest">No available contest information.</div>
   );
 
   const ElectionWrapper = styled.div`
@@ -38,7 +36,7 @@ const Election = (props) => {
     font-weight: bold;
     font-size: 1.4em;
     padding-bottom: 0.25em;
-    color: red;
+    color: #e0162b;
   `;
 
   const Address = styled(Date)`
