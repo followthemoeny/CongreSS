@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 const APP = `http://localhost:3000/`;
 jest.setTimeout(10000);
-xdescribe('do we get to the candidates page?', () => {
+describe('do we get to the candidates page?', () => {
   let browser;
   let page;
 
