@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
+import Finances from './Finances.jsx';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -70,23 +71,7 @@ const Official = (props) => {
   const address = access(props).address[0].line1(null);
   const { name, party, photoUrl, position, details } = props;
 
-  return details ? (
-    <CardWrapper>
-      <InfoWrapper>
-        <Name>{name}</Name>
-        <Position>{position}</Position>
-        {photoUrl ? (
-          <Picture
-            src={photoUrl}
-            onError={(e) => {
-              e.target.style.display = 'none';
-              photoUrl = null;
-            }}
-          />
-        ) : null}
-      </InfoWrapper>
-    </CardWrapper>
-  ) : (
+  return (
     <CardWrapper>
       <InfoWrapper>
         <Name>{name}</Name>

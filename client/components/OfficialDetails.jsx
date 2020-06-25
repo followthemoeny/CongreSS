@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
+import Finances from '../components/Finances.jsx';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -68,9 +69,8 @@ const OfficialDetails = (props) => {
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
-  const { name, party, photoUrl, position, details } = props;
-
-  useEffect;
+  const { name, party, photoUrl, position, details, state } = props;
+  console.log(state);
   return (
     <CardWrapper>
       <InfoWrapper>
@@ -85,6 +85,7 @@ const OfficialDetails = (props) => {
             }}
           />
         ) : null}
+        <Finances name={name} state={state} />
       </InfoWrapper>
     </CardWrapper>
   );

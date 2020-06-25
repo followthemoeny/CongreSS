@@ -13,6 +13,7 @@ import Session from '../Session.js';
 import Official from '../components/Official.jsx';
 import Logo from '../components/Logo.jsx';
 import OfficialDetails from '../components/OfficialDetails.jsx';
+import { access } from '../util';
 
 const ElectionLink = ({ details }) => {
   const ButtonsWrapepr = styled.div`
@@ -96,17 +97,20 @@ const Grid = (props) => {
     }
   `;
 
-  const [officials, setOfficials] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     Session.getOfficals()
-      .then((data) => setOfficials(data))
-      .catch((err) => setOfficials(undefined));
+      .then((data) => setData(data))
+      .catch((err) => setData(undefined));
   }, []);
 
-  if (officials === null) {
+  if (data === null) {
     return <h1>Loading...</h1>;
   }
+
+  const officials = data.officials;
+  const state = access(data).normalizedInput.state('');
 
   if (!officials || !officials.length) {
     return <h1>An error occurred.</h1>;
@@ -119,6 +123,7 @@ const Grid = (props) => {
         key={`official${id}`}
         id={id}
         details={true}
+        state={state}
       />
     );
   }
