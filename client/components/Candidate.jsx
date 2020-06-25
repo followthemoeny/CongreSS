@@ -45,11 +45,8 @@ const Candidate = (props) => {
 `;
   CardWrapper.displayName = 'CardWrapper';
 
-  console.log('candidate data', props);
-
   const [showFinances, setShowFinances] = useState(false);
 
-  console.log('candidate data', props);
   const { name, party, state } = props;
 
   return (

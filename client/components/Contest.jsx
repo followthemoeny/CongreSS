@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Candidate from './Candidate.jsx';
 
 const Contest = (props) => {
-  console.log('election data', props);
   const candidates = props.candidates || [];
   const { ballotTitle, type } = props;
 
@@ -13,7 +12,7 @@ const Contest = (props) => {
       <Candidate {...data} key={`candidate${i}`} state={props.state} />
     ))
   ) : (
-    <div className = "NoCand">No candidate information available.</div>
+    <div className="NoCand">No candidate information available.</div>
   );
 
   const ContestWrapper = styled.div`
