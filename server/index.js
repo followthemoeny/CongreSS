@@ -14,9 +14,6 @@ app.use(cookieparser());
 app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use('/client', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../client/assets/noImage.png'));
-  });
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
   app.use('/', (req, res) => {
