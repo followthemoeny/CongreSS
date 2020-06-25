@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  withRouter,
-  useParams,
-} from 'react-router-dom';
+import { Switch, Route, Link, useRouteMatch, withRouter, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../components/style/device';
 import Session from '../Session.js';
@@ -117,15 +110,11 @@ const Grid = (props) => {
   }
 
   if (id !== undefined) {
-    return (
-      <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
-    );
+    return <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />;
   }
 
   const children = officials
-    .map((props, id) => (
-      <Official {...props} key={`official${id}`} officialId={id} />
-    ))
+    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
     .reverse();
 
   return (

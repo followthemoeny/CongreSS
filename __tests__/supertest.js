@@ -32,9 +32,15 @@ describe('Route Integration', () => {
         return request(server)
           .get('/api/officials?address=144 2nd ave 10003')
           .expect((res) => {
+<<<<<<< HEAD
+            expect(Array.isArray(res.body)).toEqual(true);
+            res.body.forEach((official) => {
+              // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
+=======
             expect(Array.isArray(res.body.officials)).toEqual(true);
             res.body.officials.forEach((official) => {
              // expect(official.hasOwnProperty('address')).toEqual(true); had to disable because letitia jame has no address
+>>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
               expect(official.hasOwnProperty('name')).toEqual(true);
               expect(official.hasOwnProperty('position')).toEqual(true);
               expect(official.hasOwnProperty('party')).toEqual(true);
@@ -57,4 +63,3 @@ describe('Route Integration', () => {
     });
   });
 });
-

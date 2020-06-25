@@ -46,9 +46,10 @@ apiController.getRepresentatives = (req, res, next) => {
 
 apiController.getCandidateInfo = async (req, res, next) => {
   const { name, state } = req.query;
-  if (!name || !state) return res.sendStatus(400);
-  const candidateResp = await fetch(`https://api.open.fec.gov/v1/candidates/search/?sort_null_only=false&name=${name}&sort=name&page=1&sort_hide_null=false&sort_nulls_last=false&state=${state}&api_key=${fec}&per_page=20
-  `);
+  let url = `https://api.open.fec.gov/v1/candidates/search/?sort_null_only=false&name=${name}&sort=name&page=1&sort_hide_null=false&sort_nulls_last=false&api_key=${fec}&per_page=20`;
+  if (state) url += `&state=${state}`;
+  if (!name) return res.sendStatus(400);
+  const candidateResp = await fetch(url);
   const data = await candidateResp.json();
   if (data.error) return next(data.error.message);
   if (!data.results.length) return res.sendStatus(404);

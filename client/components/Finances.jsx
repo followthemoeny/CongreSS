@@ -18,7 +18,7 @@ const Finances = (props) => {
     return <h1>No financial information available for this candidate.</h1>;
   }
 
-  console.log('financial data', data); 
+  console.log('financial data', data);
   const {
     individual_contributions,
     other_political_committee_contributions,
@@ -33,41 +33,35 @@ const Finances = (props) => {
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: [
-            individual_contributions
-          ]
+          data: [individual_contributions],
         },
         {
           label: 'committee contributions',
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: [
-            other_political_committee_contributions
-          ]
+          data: [other_political_committee_contributions],
         },
         {
           label: 'operating expenditures',
           backgroundColor: 'rgba(75,192,192,1)',
           borderColor: 'rgba(0,0,0,1)',
           borderWidth: 2,
-          data: [
-            operating_expenditures
-          ]
-        }
-      ]
+          data: [operating_expenditures],
+        },
+      ],
     },
     options: {
-      title:{
-        display:true,
-        text:'Campaign Finances',
-        fontSize:20
+      title: {
+        display: true,
+        text: 'Campaign Finances',
+        fontSize: 20,
       },
-      legend:{
-        display:true,
-        position:'right'
-      }
-    }
+      legend: {
+        display: true,
+        position: 'right',
+      },
+    },
   };
 
   return (
