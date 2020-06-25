@@ -38,7 +38,7 @@ const Finances = (props) => {
 
   const personalData = {
     height: '300px',
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, 
     data: {
       datasets: [
         {
