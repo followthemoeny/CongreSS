@@ -82,7 +82,6 @@ const MoreInfoButton = styled.button`
 MoreInfoButton.displayName = 'MoreInfoButton';
 
 const Official = (props) => {
-  console.log('offical data', props);
   const websiteUrl = access(props).urls[0](null);
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
