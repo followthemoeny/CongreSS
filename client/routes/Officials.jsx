@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Link, useRouteMatch, withRouter, useParams } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  withRouter,
+  useParams,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../components/style/device';
 import Session from '../Session.js';
@@ -46,7 +53,7 @@ const ElectionsButton = styled.button`
 `;
 ElectionsButton.displayName = 'ElectionsButton';
 
-const ElectionLink = ({ details }) => {
+const ElectionLink = withRouter((props) => {
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
@@ -63,9 +70,7 @@ const ElectionLink = ({ details }) => {
   return (
     <ButtonWrapper>
       <LinkWrapper>
-        <Link to={details ? '/officials' : '/'}>
-          <ElectionsButton>Back</ElectionsButton>
-        </Link>
+        <ElectionsButton onClick={props.history.goBack}>Back</ElectionsButton>
       </LinkWrapper>
       {elections ? (
         <LinkWrapper>
@@ -76,7 +81,7 @@ const ElectionLink = ({ details }) => {
       ) : null}
     </ButtonWrapper>
   );
-};
+});
 
 const Grid = (props) => {
   let { id } = useParams();
@@ -92,6 +97,7 @@ const Grid = (props) => {
   OfficialsHeader.displayName = 'OfficialsHeader';
 
   const OfficialsWrapper = styled.div`
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,7 +118,7 @@ const Grid = (props) => {
       .then((data) =>
         setTimeout(() => {
           setData(data);
-        }, 650)
+        }, 650),
       )
       .catch((err) => setData(undefined));
   }, []);
@@ -131,13 +137,19 @@ const Grid = (props) => {
   if (id !== undefined) {
     return (
       <OfficialsWrapper>
-        <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
+        <OfficialDetails
+          {...officials[id]}
+          key={`official${id}`}
+          state={state}
+        />
       </OfficialsWrapper>
     );
   }
 
   const children = officials
-    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
+    .map((props, id) => (
+      <Official {...props} key={`official${id}`} officialId={id} />
+    ))
     .reverse();
 
   return (

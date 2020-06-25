@@ -73,7 +73,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 30px 40px 30px;
+  margin: 0px 30px 40px 30px;
   padding-top: 20px;
   padding: 10px;
   padding-left: 0px;
@@ -105,6 +105,7 @@ const Picture = styled.img`
   min-height: 300px;
   border-radius: 5%;
   margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 const Name = styled.h2`
@@ -163,8 +164,8 @@ const OfficialContact = styled.a`
 const Media = styled.ul`
   list-style: none;
   display: flex;
-  padding: none;
-  margin: none;
+  padding: 0px;
+  margin: 0px;
 `;
 Media.displayName = 'Media';
 
