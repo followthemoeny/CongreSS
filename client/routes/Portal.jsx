@@ -14,6 +14,7 @@ const StyledForm = styled.form`
 `;
 
 const SearchInput = styled.input`
+  outline: none;
   width: 75vw;
   height: 2em;
   font-size: 1.2em;
@@ -28,6 +29,7 @@ const SearchInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  outline: none;
   width: 75vw;
   box-sizing: content-box;
   margin-top: 10px;
@@ -38,6 +40,12 @@ const SubmitButton = styled.button`
   font-weight: bold;
   border-radius: 10px;
   border: none;
+  &:hover {
+    background-color: #0052e2;
+  }
+  &:active {
+    box-shadow: inset 0px 0px 18px 0px #00527c;
+  }
 `;
 
 const Explanation = styled.p`

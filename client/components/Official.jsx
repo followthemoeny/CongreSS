@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
 import Finances from './Finances.jsx';
+import img from '../assets/noImage.png';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -85,9 +86,9 @@ const Official = (props) => {
         <Name>{name}</Name>
         <Position>{position}</Position>
         <Picture
-          src={photoUrl || 'client/assets/noImage.png'}
+          src={photoUrl || img}
           onError={(e) => {
-            e.target.src = 'client/assets/noImage.png';
+            e.target.src = img;
           }}
         />
         <div>

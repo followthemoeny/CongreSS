@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { access } from '../util';
 import { device } from '../components/style/device';
 import Finances from '../components/Finances.jsx';
+import img from '../assets/noImage.png';
 
 const mediaIcons = {
   Facebook: (
@@ -162,15 +163,12 @@ const OfficialDetails = (props) => {
         <Name>{name}</Name>
         <Position>{position}</Position>
         <Party>{party}</Party>
-        {photoUrl ? (
-          <Picture
-            src={photoUrl}
-            onError={(e) => {
-              e.target.style.display = 'none';
-              photoUrl = null;
-            }}
-          />
-        ) : null}
+        <Picture
+          src={photoUrl || img}
+          onError={(e) => {
+            e.target.src = img;
+          }}
+        />
         <ContactWrapper>
           <span>
             {emails ? <OfficialContact href={'mailto:' + emails[0]}>Email</OfficialContact> : null}
