@@ -7,12 +7,14 @@ import 'jest-styled-components';
 
 
 
-// import Candidate from '../client/components/Candidate';
+import Candidate from '../client/components/Candidate';
 import Contest from '../client/components/Contest';
 import Election from '../client/components/Election';
 import Logo from '../client/components/Logo';
 import Official from '../client/components/Official';
-import Test from '../client/components/TestComponent';
+import Finances from '../client/components/Finances';
+import Officials from '../client/routes/Officials'
+//import Test from '../client/components/TestComponent';
 
 configure({ adapter: new Adapter()});
 
@@ -34,58 +36,172 @@ describe('React unit tests', ()=>{
 
   describe('Official', () => {
     let wrapper
+    const props = {
+        "name": "Donald J. Trump",
+        "address": [
+          {
+            "line1": "1600 Pennsylvania Avenue Northwest",
+            "city": "Washington",
+            "state": "DC",
+            "zip": "20500"
+          }
+        ],
+        "party": "Republican Party",
+        "phones": [
+          "(202) 456-1111"
+        ],
+        "urls": [
+          "https://www.whitehouse.gov/"
+        ],
+        "photoUrl": "https://www.whitehouse.gov/sites/whitehouse.gov/files/images/45/PE%20Color.jpg",
+        "channels": [
+          {
+            "type": "Facebook",
+            "id": "DonaldTrump"
+          },
+          {
+            "type": "Twitter",
+            "id": "potus"
+          },
+          {
+            "type": "YouTube",
+            "id": "whitehouse"
+          }
+        ],
+        "position": "President of the United States",
+        "officialId": 0
+    }
 
     beforeAll(() => {
-      wrapper = shallow(<Official />);
+      wrapper = shallow(<Official {...props}/>);
+    })
+    it('Official has styled components Name and Position and their texts are from the props', () => {
+      //console.log(wrapper.debug())
+      expect(wrapper.find('Name').text()).toEqual(props.name)
+      expect(wrapper.find('Position').text()).toEqual(props.position)
     })
 
-    
 
   })
 
   describe('Election', () => {
     let wrapper
+    let noData
+    const dataProps = {
+        "contests": [{
+          "type":"General",
+          "ballotTitle":"US HOUSE OF REPRESENTATIVES DISTRICT 11",
+          "office":"US HOUSE OF REPRESENTATIVES DISTRICT 11",
+          "level":["country"],
+          "district":{"name":"US HOUSE OF REPRESENTATIVES DISTRICT 11",
+          "scope":"congressional","id":"0"},
+          "numberElected":"1",
+          "ballotPlacement":"3",
+          "sources":[{
+            "name":"Voting Information Project",
+            "official":true
+          }],
+          "candidates":[{
+            "name":"Lynda Bennett",
+            "party":"REPUBLICAN"
+          },
+          {
+            "name":"Madison Cawthorn",
+            "party":"REPUBLICAN"
+          }]
+        }],
+        "state": "NC"
+    }
+    const noDataProps = {}
 
     beforeAll(() => {
-      wrapper = shallow(<Election />);
+      wrapper = mount(<Election {...dataProps}/>);
+      noData = mount(<Election {...noDataProps}/>)
+    })
+
+    afterAll(() =>{
+      wrapper.unmount();
+      noData.unmount();
+    })
+
+    it('Correctly has as many contests as there are contests', () =>{
+      expect(wrapper.find('Contest')).toHaveLength(dataProps.contests.length)
+    })
+
+    it('correctly has as many Candidate divs as there are candidates', () => {
+      const numCandidates = dataProps.contests.reduce((acc, curr) => {
+        return acc+= curr.candidates.length
+      },0)
+
+      expect(wrapper.find('Candidate')).toHaveLength(numCandidates)
+    })
+
+    it('gracefully handles missing election data with a div className = NoContest',() => {
+      expect(noData.find('.NoContest')).toHaveLength(1)
+    })
+  })
+
+  describe('Candidate', () => {
+    let wrapper
+
+    beforeAll(() => {
+      wrapper = shallow(<Candidate />);
+    })
+
+    it('Pressing the button shows finances', () => {
+      expect(wrapper.find('Finances')).toHaveLength(0)
+      wrapper.find('button').simulate('click')
+      expect(wrapper.find('Finances')).toHaveLength(1)
     })
 
 
   })
-
-  // describe('Candidate', () => {
-  //   let wrapper
-
-  //   beforeAll(() => {
-  //     wrapper = shallow(<Candidate />);
-  //   })
-
-
-  // })
 
   describe('Contest', () => {
     let wrapper
+    let noProps
+
+    const dataProps = {
+      candidates: [
+        { 
+          "name":'test'
+        },
+        {
+          "name": 'test'
+        }
+      ],
+    }
+    const noData = {}
 
     beforeAll(() => {
-      wrapper = shallow(<Contest />);
+      wrapper = shallow(<Contest {...dataProps}/>);
+      noProps = shallow(<Contest {...noData}/>)
     })
 
+    it('Renders as many candidate divs as there are candidates', () => {
+      expect(wrapper.find('Candidate')).toHaveLength(dataProps.candidates.length)
+    })
+
+    it('Displays an apology div if there is no candidate information', () => {
+      expect(noProps.find('.NoCand')).toHaveLength(1)
+    })
 
   })
 
 
-  xdescribe('test component', () => {
-    let wrapper
+  // xdescribe('test component', () => {
+  //   let wrapper
 
-    beforeAll(() => {
-      wrapper = shallow(<Test />);
-    })
+  //   beforeAll(() => {
+  //     wrapper = shallow(<Test />);
+  //   })
 
 
-    xit('Renders a <div>', () =>{
-      console.log(wrapper.type())
-      expect(wrapper.type()).toEqual('div')
-    })
+  //   xit('Renders a <div>', () =>{
+  //     console.log(wrapper.type())
+  //     expect(wrapper.type()).toEqual('div')
+  //   })
 
-  })
+  // })
 })
+

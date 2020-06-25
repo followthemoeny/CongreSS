@@ -20,6 +20,8 @@ const ElectionLink = (props) => {
     justify-content: space-between;
     margin: 15px 10px;
   `;
+  ButtonsWrapepr.displayName = 'ButtonsWrapper'
+
   const LinkWrapper = styled.div`
     a {
       display: flex;
@@ -28,6 +30,8 @@ const ElectionLink = (props) => {
       text-decoration: none;
     }
   `;
+   LinkWrapper.displayName = 'LinkWrapper'
+
   const ElectionsButton = styled.button`
     width: 100px;
     padding: 5px 0px 5px 0px;
@@ -38,6 +42,8 @@ const ElectionLink = (props) => {
     background-color: red;
     color: white;
   `;
+  ElectionsButton.displayName = 'ElectionsButton'
+
   const [elections, setElections] = useState(null);
 
   useEffect(() => {
@@ -83,6 +89,8 @@ const Grid = (props) => {
     margin-bottom: 0px;
     font-family: -apple-system;
   `;
+  OfficialsHeader.displayName = 'OfficialsHeader'
+
   const OfficialsWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -95,6 +103,7 @@ const Grid = (props) => {
       flex-wrap: wrap;
     }
   `;
+  OfficialsWrapper.displayName = "OfficialsWrapper"
 
   const [data, setData] = useState(null);
 

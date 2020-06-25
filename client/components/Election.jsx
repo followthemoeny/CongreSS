@@ -16,7 +16,7 @@ const Election = (props) => {
       <Contest {...data} key={`contest${i}`} state={address.state} />
     ))
   ) : (
-    <div>No available contest information.</div>
+    <div className = 'NoContest'>No available contest information.</div>
   );
 
   const ElectionHeader = styled.div`
