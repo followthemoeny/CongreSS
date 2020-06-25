@@ -110,19 +110,11 @@ const Grid = (props) => {
   }
 
   if (id !== undefined) {
-<<<<<<< HEAD
-    return <Official {...officials[id]} key={`official${id}`} state={state} />;
-=======
-    return (
-      <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />
-    );
->>>>>>> e55d9a674c94e5927158b54813e9385786506ed1
+    return <OfficialDetails {...officials[id]} key={`official${id}`} state={state} />;
   }
 
   const children = officials
-    .map((props, id) => (
-      <Official {...props} key={`official${id}`} officialId={id} />
-    ))
+    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
     .reverse();
 
   return (
