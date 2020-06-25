@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Session from '../Session.js';
 import { Bar } from 'react-chartjs-2';
 import styled from 'styled-components';
+import { WaveLoading } from 'react-loadingg';
 
 const Finances = (props) => {
   const NoFinances = styled.h1`
@@ -11,19 +12,24 @@ const Finances = (props) => {
 
   useEffect(() => {
     Session.getFinances(props.name, props.state)
-      .then((data) => setData(data))
-      .catch((err) => setData(undefined));
+      .then((data) =>
+        setTimeout(() => {
+          setData(data);
+        }, 650)
+      )
+      .catch((err) =>
+        setTimeout(() => {
+          setData(undefined);
+        }, 650)
+      );
   }, []);
 
   if (data === null) {
-    return <h1>Loading...</h1>;
+    console.log('LOADING HERE');
+    return <WaveLoading size="large" color="#0052a5" />;
   }
   if (!data) {
-    return (
-      <NoFinances>
-        No financial information available for this candidate.
-      </NoFinances>
-    );
+    return <NoFinances>No financial information available for this candidate.</NoFinances>;
   }
 
   console.log('financial data', data);
