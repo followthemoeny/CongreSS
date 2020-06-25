@@ -25,11 +25,6 @@ describe('React unit tests', ()=>{
       wrapper = shallow(<Logo />);
     })
 
-
-    // it('Has logo name in text', () =>{
-    //   expect(wrapper.text()).toEqual('Congre$$')
-    // })
-
     it('Logo is encapsulated in styled span "LogoContent"', () => {
       expect(wrapper.find('LogoContent')).toHaveLength(1)
       expect(wrapper.find('LogoContent').text()).toEqual('Congre$$')
@@ -44,6 +39,7 @@ describe('React unit tests', ()=>{
       wrapper = shallow(<Official />);
     })
 
+    
 
   })
 
