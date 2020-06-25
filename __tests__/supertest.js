@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const server = 'http://localhost:3000';
 
-xdescribe('Route Integration', () => {
+describe('Route Integration', () => {
   describe('/', () => {
     describe('GET', () => {
       it('responds with a 200 status and text/html content type', () => {

@@ -22,6 +22,7 @@ const CardWrapper = styled.div`
     min-width: 15vw;
   }
 `;
+CardWrapper.displayName = 'CardWrapper'
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const InfoWrapper = styled.div`
   align-items: center;
   padding-left: 10px;
 `;
+InfoWrapper.displayName = 'InfoWrapper'
 
 const Picture = styled.img`
   object-fit: cover;
@@ -38,17 +40,20 @@ const Picture = styled.img`
   min-height: 300px;
   border-radius: 5% 5% 0 0;
 `;
+Picture.displayName = 'Picture'
 
 const Name = styled.h2`
   font-weight: bold;
   margin: 0;
   padding: 0;
 `;
+Name.displayName = 'Name'
 
 const Position = styled.h3`
   padding: 0px 0px 5px 0px;
   margin: 0;
 `;
+Position.displayName = 'Position'
 
 const MoreInfoButton = styled.button`
   width: 300px;
@@ -61,6 +66,7 @@ const MoreInfoButton = styled.button`
   background-color: #0052a5;
   color: white;
 `;
+MoreInfoButton.displayName = 'MoreInfoButton'
 
 const Official = (props) => {
   const [showDetails, setShowDetails] = useState(false);

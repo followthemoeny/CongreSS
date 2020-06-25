@@ -17,6 +17,7 @@ import Test from '../client/components/TestComponent';
 configure({ adapter: new Adapter()});
 
 describe('React unit tests', ()=>{
+  
   describe('Logo', () => {
     let wrapper
 
@@ -25,12 +26,13 @@ describe('React unit tests', ()=>{
     })
 
 
-    it('Has logo name in text', () =>{
-      expect(wrapper.text()).toEqual('Congre$$')
-    })
+    // it('Has logo name in text', () =>{
+    //   expect(wrapper.text()).toEqual('Congre$$')
+    // })
+
     it('Logo is encapsulated in styled span "LogoContent"', () => {
-      console.log(wrapper.debug())
-      expect(wrapper.find('logoSpan')).toHaveLength(1)
+      expect(wrapper.find('LogoContent')).toHaveLength(1)
+      expect(wrapper.find('LogoContent').text()).toEqual('Congre$$')
     })
 
   })
@@ -76,7 +78,7 @@ describe('React unit tests', ()=>{
   })
 
 
-  describe('test component', () => {
+  xdescribe('test component', () => {
     let wrapper
 
     beforeAll(() => {

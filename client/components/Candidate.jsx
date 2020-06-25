@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { device } from '../components/style/device';
 import styled from 'styled-components';
-import Plot from 'react-plotly.js';
+// import Plot from 'react-plotly.js';
 import Session from '../Session.js';
 
 const FinanceData = (props) => {
@@ -27,28 +27,28 @@ const FinanceData = (props) => {
     operating_expenditures,
   } = data;
 
-  const plotData = [
-    {
-      x: [1, 2, 3],
-      y: [2, 6, 3],
-      type: 'scatter',
-      mode: 'lines+markers',
-      marker: { color: 'red' },
-    },
-    {
-      type: 'bar', 
-      x: [1, 2, 3], 
-      y: [
-        individual_contributions, 
-        other_political_committee_contributions, 
-        operating_expenditures
-      ]
-    }
-  ];
+  // const plotData = [
+  //   {
+  //     x: [1, 2, 3],
+  //     y: [2, 6, 3],
+  //     type: 'scatter',
+  //     mode: 'lines+markers',
+  //     marker: { color: 'red' },
+  //   },
+  //   {
+  //     type: 'bar', 
+  //     x: [1, 2, 3], 
+  //     y: [
+  //       individual_contributions, 
+  //       other_political_committee_contributions, 
+  //       operating_expenditures
+  //     ]
+  //   }
+  // ];
 
   return (
     <div style={{ border: '1px solid' }}>
-       <Plot data={plotData} layout={ {width: 320, height: 240, title: 'A Fancy Plot'} } />
+       {/* <Plot data={plotData} layout={ {width: 320, height: 240, title: 'A Fancy Plot'} } /> */}
       <div>
         <b>individual contributions:</b> {individual_contributions}
       </div>
@@ -78,6 +78,7 @@ const Candidate = (props) => {
       min-width: 30vw;
     }
   `;
+  CardWrapper.displayName = "CardWrapper"
   console.log('candidate data', props);
 
   const [showFinances, setShowFinances] = useState(false);
