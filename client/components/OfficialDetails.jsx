@@ -12,12 +12,14 @@ const CardWrapper = styled.div`
   margin: 40px 30px 40px 30px;
   padding-top: 20px;
   padding: 10px;
+  padding-left: 0px;
   max-width: 80vw;
   min-width: 80vw;
   border-radius: 4px;
   @media ${device.laptop} {
     max-width: 100px;
     min-width: 25vw;
+    align-items: center;
   }
   @media ${device.desktop} {
     min-width: 15vw;
@@ -37,7 +39,8 @@ const Picture = styled.img`
   min-width: 300px;
   max-height: 300px;
   min-height: 300px;
-  border-radius: 5% 5% 0 0;
+  border-radius: 5%;
+  padding-bottom: 10px;
 `;
 
 const Name = styled.h2`
@@ -70,7 +73,6 @@ const OfficialDetails = (props) => {
   const phoneNumber = access(props).phones[0](null);
   const address = access(props).address[0].line1(null);
   const { name, party, photoUrl, position, details, state } = props;
-  console.log(state);
   return (
     <CardWrapper>
       <InfoWrapper>
