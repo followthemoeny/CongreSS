@@ -120,15 +120,13 @@ const Grid = (props) => {
       <Official
         {...officials[id]}
         key={`official${id}`}
-        id={id}
-        details={true}
         state={state}
       />
     );
   }
 
   const children = officials
-    .map((props, i) => <Official {...props} key={`official${i}`} id={i} />)
+    .map((props, id) => <Official {...props} key={`official${id}`} officialId={id} />)
     .reverse();
 
   return (
