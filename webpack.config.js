@@ -20,7 +20,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: 'http://localhost:8080/build/',
+    publicPath: '/build/',
   },
   mode,
   plugins: [new webpack.HotModuleReplacementPlugin()],
@@ -35,6 +35,14 @@ module.exports = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },

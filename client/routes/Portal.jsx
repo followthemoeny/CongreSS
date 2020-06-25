@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { device } from '../components/style/device';
 import Logo from '../components/Logo.jsx';
 import Session from '../Session.js';
+import { WaveLoading } from 'react-loadingg';
 
 const StyledForm = styled.form`
   display: flex;
@@ -13,6 +14,7 @@ const StyledForm = styled.form`
 `;
 
 const SearchInput = styled.input`
+  outline: none;
   width: 75vw;
   height: 2em;
   font-size: 1.2em;
@@ -27,6 +29,7 @@ const SearchInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  outline: none;
   width: 75vw;
   box-sizing: content-box;
   margin-top: 10px;
@@ -37,6 +40,12 @@ const SubmitButton = styled.button`
   font-weight: bold;
   border-radius: 10px;
   border: none;
+  &:hover {
+    background-color: #0052e2;
+  }
+  &:active {
+    box-shadow: inset 0px 0px 18px 0px #00527c;
+  }
 `;
 
 const Explanation = styled.p`
@@ -56,28 +65,38 @@ const Portal = (props) => {
     setSearching(true);
     Session.initialize(address)
       .then((data) => {
+        // setTimeout(() => {
+        //   setSearching(false);
+        //   props.history.push('/officials');
+        // }, 650);
         setSearching(false);
         props.history.push('/officials');
       })
       .catch((err) => {
         console.log(err);
-        setSearching("Sorry, that address doesn't seem to be valid.");
+        setTimeout(() => {
+          setSearching("Sorry, that address doesn't seem to be valid.");
+        }, 500);
       });
   };
 
   return (
     <div>
       <Logo />
-      <StyledForm onSubmit={search}>
+      <StyledForm onSubmit={search} autoComplete={'off'}>
         <div>{typeof searching === 'string' ? searching : null}</div>
-        <SearchInput
-          name="address"
-          type="text"
-          placeholder="123 Main St, NY, NY, 10025"
-        ></SearchInput>
-        <SubmitButton type="submit">
-          {searching === true ? '...' : 'Search for my Representatives'}
-        </SubmitButton>
+        {searching !== true && (
+          <SearchInput
+            name="address"
+            type="text"
+            placeholder="123 Main St, NY, NY, 10025"
+          ></SearchInput>
+        )}
+        {searching === true ? (
+          <WaveLoading size="large" color="#0052a5" />
+        ) : (
+          <SubmitButton type="submit">Search for my Representatives</SubmitButton>
+        )}
       </StyledForm>
     </div>
   );
