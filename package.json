@@ -37,7 +37,7 @@
     "express": "^4.17.1",
     "jest-puppeteer": "^4.4.0",
     "jest-styled-components": "^7.0.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "path": "^0.12.7",
     "puppeteer": "^4.0.1",
     "puppeteer-core": "^4.0.1",
